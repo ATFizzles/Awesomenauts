@@ -4,6 +4,8 @@ game.resources = [
 	 * @example
 	 * {name: "example", type:"image", src: "data/img/example.png"},
 	 */
+
+	 //allows program to actually use background tiles and meta tiles
 	 {name: "background-tiles", type:"image", src: "data/img/background-tiles.png"},
 	 {name: "meta-tiles", type:"image", src: "data/img/meta-tiles.png"},
 
@@ -17,6 +19,8 @@ game.resources = [
 	 * {name: "example01", type: "tmx", src: "data/map/example01.tmx"},
 	 * {name: "example01", type: "tmx", src: "data/map/example01.json"},
  	 */
+
+ 	 //allows program to actually load the proper map from the map folder
  	 {name: "level01", type: "tmx", src: "data/map/test.tmx"},
 
 	/* Background music. 
