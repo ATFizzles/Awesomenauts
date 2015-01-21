@@ -8,6 +8,7 @@ game.resources = [
 	 //allows program to actually use background tiles and meta tiles
 	 {name: "background-tiles", type:"image", src: "data/img/background-tiles.png"},
 	 {name: "meta-tiles", type:"image", src: "data/img/meta-tiles.png"},
+	 {name: "player", type:"image", src: "data/img/orcSpear.png"},
 
 	/* Atlases 
 	 * @example
