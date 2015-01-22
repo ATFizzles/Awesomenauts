@@ -19,7 +19,7 @@ game.PlayerEntity = me.Entity.extend({
 		}]);
 
 		//sets velocity or movement speed for player
-		this.body.setVelocity(5, 0);
+		this.body.setVelocity(5, 20);
 
 	},
 	//what happens on the fly
