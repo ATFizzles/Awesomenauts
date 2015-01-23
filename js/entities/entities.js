@@ -38,6 +38,7 @@ game.PlayerEntity = me.Entity.extend({
 			//and multiplying it by me.timer.tick
 			//me.timer.tick makes movement look smooth
 			this.body.vel.x += this.body.accel.x * me.timer.tick;
+			//flips animation position 180 degrees
 			this.flipX(true);
 		}
 		//if right is not clicked, dont move
@@ -52,7 +53,7 @@ game.PlayerEntity = me.Entity.extend({
 			this.renderable.setCurrentAnimation("walk");
 		}
 	}
-
+		//if velocity is 0 set to idle
 		else{
 			this.renderable.setCurrentAnimation("idle");
 		}
