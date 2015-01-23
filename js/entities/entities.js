@@ -22,6 +22,13 @@ game.PlayerEntity = me.Entity.extend({
 		//changed y movement
 		this.body.setVelocity(5, 20);
 
+		//adding "idle animation"
+		this.renderable.addAnimation("idle", [78]);
+		//adding "walk" animation and setting images to use
+		this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 122, 123, 124, 125], 80);
+
+		//sets an animation to start with (default)
+		this.renderable.setCurrentAnimation("idle");
 	},
 	//what happens on the fly
 	update: function(delta){
@@ -31,16 +38,34 @@ game.PlayerEntity = me.Entity.extend({
 			//and multiplying it by me.timer.tick
 			//me.timer.tick makes movement look smooth
 			this.body.vel.x += this.body.accel.x * me.timer.tick;
+			this.flipX(true);
 		}
 		//if right is not clicked, dont move
 		else{
 			this.body.vel.x = 0;
 		}
 
+		//walk animation only if character is moving
+		if(this.body.vel.x !== 0){
+		//doesnt start walk animation if it is already walking
+		if(!this.renderable.isCurrentAnimation("walk")){
+			this.renderable.setCurrentAnimation("walk");
+		}
+	}
+
+		else{
+			this.renderable.setCurrentAnimation("idle");
+		}
+
+
+
 		//tells all the code to actually work
 		//delta is change in time that happened
 		//must always update for screen to run
 		this.body.update(delta);
+
+		//updates animation on the fly
+		this._super(me.Entity, "update", [delta]);
 		return true;
 	}
 });
