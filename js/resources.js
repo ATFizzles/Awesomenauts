@@ -11,6 +11,8 @@ game.resources = [
 	 //program loads orc
 	 {name: "player", type:"image", src: "data/img/orcSpear.png"},
 
+	 {name: "tower", type:"image", src: "data/img/tower_round.svg.png"},
+
 	/* Atlases 
 	 * @example
 	 * {name: "example_tps", type: "tps", src: "data/img/example_tps.json"},
