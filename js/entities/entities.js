@@ -71,44 +71,59 @@ game.PlayerEntity = me.Entity.extend({
 	}
 });
 
-
+//creates PlayerBase class
+//pretty much the same as creating the player class but with a few minor changes
 game.PlayerBaseEntity = me.Entity.extend({
 	init function(x, y, settings){
 		this._super(me.Entity, 'init', [x, y, {
+			//settings being set (100 instead of 64 for the tower)
 			image: "tower",
 			width: 100,
 			height: 100, 
 			spritewidth: "100",
 			spriteheight: "100",
+			//returns shape of tower
 			getShape: function(){
+				//makes sure tower is a polygon
 				return (new me.Rect(0, 0, 100, 100)).toPolygon();
 			}
 		}]);
+		//says tower has not been destroyed
 		this.broken = false;
+		//sets health
 		this.health = 10;
+		//even if tower is not on screen, the tower will still update
 		this.alwaysUpdate = true;
+		//if player runs into tower it will be able to collide
 		this.body.onCollision = this.onCollision.bind(this);
-
+		//can check and see what you are running into
 		this.type = "PlayerBaseEntity";
 	},
 
-	update:function(){
+	//updates what happens on the fly
+	update:function(delta){
+		//if health is 0, then player is dead
 		if(this.health<=0){
 			this.broken = true;
 		}
+		//delta represents time since last update
 		this.body.update(delta);
 
+		//updates animation on the fly
 		this._super(me.Entity, "update", [delta]);
+		//must always return
 		return true;
 	},
 
+	//must have collision function
 	onCollision: function(){
 
 	}
 });
 
 
-
+//just like PlayerBaseEntity class, but the name is EnemyBaseEntity
+//everything is the same
 game.EnemyBaseEntity = me.Entity.extend({
 	init function(x, y, settings){
 		this._super(me.Entity, 'init', [x, y, {
@@ -135,6 +150,7 @@ game.EnemyBaseEntity = me.Entity.extend({
 		}
 		this.body.update(delta);
 
+		//updates animation on the fly
 		this._super(me.Entity, "update", [delta]);
 		return true;
 	},
