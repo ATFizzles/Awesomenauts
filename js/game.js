@@ -44,6 +44,7 @@ var game = {
 		//true says you can make multiple instances of the player
 		me.pool.register("player", game.PlayerEntity, true);
 
+		//registering both bases (show up on screen)
 		me.pool.register("PlayerBase", game.PlayerBaseEntity);
 		me.pool.register("EnemyBase", game.EnemyBaseEntity);
 

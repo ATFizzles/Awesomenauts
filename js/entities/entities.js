@@ -22,6 +22,7 @@ game.PlayerEntity = me.Entity.extend({
 		//changed y movement
 		this.body.setVelocity(5, 20);
 
+		//screen follows wherever player goes on x and y axis
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 
 		//adding "idle animation"
@@ -101,8 +102,12 @@ game.PlayerBaseEntity = me.Entity.extend({
 		//can check and see what you are running into
 		this.type = "PlayerBaseEntity";
 
+		//renderable helps with animation
+		//adds not burning animation
 		this.renderable.addAnimation("idle", [0]);
+		//adds burning animation
 		this.renderable.addAnimation("broken", [1]);
+		//sets not burning animation
 		this.renderable.setCurrentAnimation("idle");
 	},
 
@@ -111,6 +116,7 @@ game.PlayerBaseEntity = me.Entity.extend({
 		//if health is 0, then player is dead
 		if(this.health<=0){
 			this.broken = true;
+			//sets burning animation
 			this.renderable.setCurrentAnimation("broken");
 		}
 		//delta represents time since last update
