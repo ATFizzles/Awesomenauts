@@ -29,6 +29,8 @@ game.PlayerEntity = me.Entity.extend({
 		this.renderable.addAnimation("idle", [78]);
 		//adding "walk" animation and setting images to use
 		this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 122, 123, 124, 125], 80);
+		//adding "attack" animation
+		this.renderable.addAnimation("attack", [65, 66, 67, 68, 69, 70, 71, 72], 80);
 
 		//sets an animation to start with (default)
 		this.renderable.setCurrentAnimation("idle");
@@ -49,19 +51,43 @@ game.PlayerEntity = me.Entity.extend({
 			this.body.vel.x = 0;
 		}
 
-		//walk animation only if character is moving
-		if(this.body.vel.x !== 0){
-		//doesnt start walk animation if it is already walking
-		if(!this.renderable.isCurrentAnimation("walk")){
-			this.renderable.setCurrentAnimation("walk");
+		//if attack key is pressed...
+		if(me.input.isKeyPressed("attack")){
+			//if current animation isnt attack then sets current animation to attack then idle
+			if(!this.renderable.isCurrentAnimation("attack")){
+				//sets the current animation to attack and once that is over
+				//goes back to the idle animation
+				this.renderable.setCurrentAnimation("attack", "idle");
+				
+				this.renderable.setAnimationFrame();
+			}
 		}
-	}
+
+		//walk animation only if character is moving
+		else if(this.body.vel.x !== 0){
+			//doesnt start walk animation if it is already walking
+			if(!this.renderable.isCurrentAnimation("walk")){
+			this.renderable.setCurrentAnimation("walk");
+			}
+		}
 		//if velocity is 0 set to idle
 		else{
 			this.renderable.setCurrentAnimation("idle");
 		}
 
-
+		//if attack key is pressed...
+		if(me.input.isKeyPressed("attack")){
+			//if current animation isnt attack then sets current animation to attack then idle
+			if(!this.renderable.isCurrentAnimation("attack")){
+				//sets the current animation to attack and once that is over
+				//goes back to the idle animation
+				this.renderable.setCurrentAnimation("attack", "idle");
+				//makes it so that the next time we start this sequence we begin
+				//from the first animation, not wherever we left off when we
+				//switched to another animation
+				this.renderable.setAnimationFrame();
+			}
+		}
 
 		//tells all the code to actually work
 		//delta is change in time that happened
