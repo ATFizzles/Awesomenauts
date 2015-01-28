@@ -46,9 +46,19 @@ game.PlayerEntity = me.Entity.extend({
 			//flips animation position 180 degrees
 			this.flipX(true);
 		}
+
+		else if(me.input.isKeyPressed("left")){
+			this.body.vel.x -= this.body.accel.x * me.timer.tick;
+			this.flipX(false);
+		}
 		//if right is not clicked, dont move
 		else{
 			this.body.vel.x = 0;
+		}
+
+		if(me.input.isKeyPressed("jump") && !this.jumping && !this.falling){
+			this.jumping = true;
+			this.body.vel.y -= this.body.accel.y * me.timer.tick;
 		}
 
 		//if attack key is pressed...
@@ -116,7 +126,7 @@ game.PlayerBaseEntity = me.Entity.extend({
 			//returns shape of tower
 			getShape: function(){
 				//makes sure tower is a polygon
-				return (new me.Rect(0, 0, 100, 100)).toPolygon();
+				return (new me.Rect(0, 0, 100, 70)).toPolygon();
 			}
 		}]);
 		//says tower has not been destroyed
@@ -174,7 +184,7 @@ game.EnemyBaseEntity = me.Entity.extend({
 			spritewidth: "100",
 			spriteheight: "100",
 			getShape: function(){
-				return (new me.Rect(0, 0, 100, 100)).toPolygon();
+				return (new me.Rect(0, 0, 100, 70)).toPolygon();
 			}
 		}]);
 		this.broken = false;
