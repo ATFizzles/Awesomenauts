@@ -22,6 +22,9 @@ game.PlayerEntity = me.Entity.extend({
 		//changed y movement
 		this.body.setVelocity(5, 20);
 
+		//keeps track of which direction your character is going
+		this.facing = "right";
+
 		//screen follows wherever player goes on x and y axis
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 
@@ -43,6 +46,8 @@ game.PlayerEntity = me.Entity.extend({
 			//and multiplying it by me.timer.tick
 			//me.timer.tick makes movement look smooth
 			this.body.vel.x += this.body.accel.x * me.timer.tick;
+			//makes character face right
+			this.facing = "right";
 			//flips animation position 180 degrees
 			this.flipX(true);
 		}
@@ -50,6 +55,8 @@ game.PlayerEntity = me.Entity.extend({
 		else if(me.input.isKeyPressed("left")){
 			//moves player left
 			this.body.vel.x -= this.body.accel.x * me.timer.tick;
+			//makes character face left	
+			this.facing = "left";
 			//false b/c dont want player to look like he is walking right
 			this.flipX(false);
 		}
@@ -58,8 +65,8 @@ game.PlayerEntity = me.Entity.extend({
 			this.body.vel.x = 0;
 		}
 		//checks if space bar was pressed/cant jump while in air
-		if(me.input.isKeyPressed("jump") && !this.jumping && !this.falling){
-			this.jumping = true;
+		if(me.input.isKeyPressed("jump") && !this.body.jumping && !this.body.falling){
+			this.body.jumping = true;
 			//moves player upwards
 			this.body.vel.y -= this.body.accel.y * me.timer.tick;
 		}
@@ -104,6 +111,8 @@ game.PlayerEntity = me.Entity.extend({
 			}
 		}
 
+
+		me.collision.check(this, true, this.collideHandler.bind(this), true);
 		//tells all the code to actually work
 		//delta is change in time that happened
 		//must always update for screen to run
@@ -112,6 +121,22 @@ game.PlayerEntity = me.Entity.extend({
 		//updates animation on the fly
 		this._super(me.Entity, "update", [delta]);
 		return true;
+	},
+
+	collideHandler: function(response){
+		if(response.b.type==='EnemyBaseEntity'){
+			var ydif = this.pos.y - response.b.pos.y;
+			var xdif = this.pos.x - response.b.pos.x;
+
+			if(xdif>-35 && this.facing==='right' && (xdif<0)) {
+				this.body.vel.x = 0;
+				this.pos.x = this.pos.x -1;
+			}
+			else if(xdif<70 && this.facing==='left' && (xdif>0)){
+				this.body.vel.x = 0;
+				this.pos.x = this.pos.x +1;
+			}
+		}
 	}
 });
 
