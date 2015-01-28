@@ -14,7 +14,9 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.game.world.addChild(player, 5);
 		//binds right key for movement
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
+		//binds left key for left movement
 		me.input.bindKey(me.input.KEY.LEFT, "left");
+		//binds space bar for jump
 		me.input.bindKey(me.input.KEY.SPACE, "jump");
 		//binds A key for attack
 		me.input.bindKey(me.input.KEY.A, "attack");

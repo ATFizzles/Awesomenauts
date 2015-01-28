@@ -46,18 +46,21 @@ game.PlayerEntity = me.Entity.extend({
 			//flips animation position 180 degrees
 			this.flipX(true);
 		}
-
+		//checks if left key was pressed
 		else if(me.input.isKeyPressed("left")){
+			//moves player left
 			this.body.vel.x -= this.body.accel.x * me.timer.tick;
+			//false b/c dont want player to look like he is walking right
 			this.flipX(false);
 		}
 		//if right is not clicked, dont move
 		else{
 			this.body.vel.x = 0;
 		}
-
+		//checks if space bar was pressed/cant jump while in air
 		if(me.input.isKeyPressed("jump") && !this.jumping && !this.falling){
 			this.jumping = true;
+			//moves player upwards
 			this.body.vel.y -= this.body.accel.y * me.timer.tick;
 		}
 
