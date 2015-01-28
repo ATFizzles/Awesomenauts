@@ -111,7 +111,7 @@ game.PlayerEntity = me.Entity.extend({
 			}
 		}
 
-
+		//checks for collisions/passes function into collideHandler
 		me.collision.check(this, true, this.collideHandler.bind(this), true);
 		//tells all the code to actually work
 		//delta is change in time that happened
@@ -123,17 +123,27 @@ game.PlayerEntity = me.Entity.extend({
 		return true;
 	},
 
+	//holds all info about collision
 	collideHandler: function(response){
+		//response.b = enemy base entity
 		if(response.b.type==='EnemyBaseEntity'){
+			//represents dif between player y position and base y position
 			var ydif = this.pos.y - response.b.pos.y;
-			var xdif = this.pos.x - response.b.pos.x;
+			//represents dif between player x position and base x position
+			var xdif = this.pos.x - response.b.pos.x
 
+			//if walking in from left and facing right, stop at certain point/prevents differences from overlapping
 			if(xdif>-35 && this.facing==='right' && (xdif<0)) {
+				//stops player from moving
 				this.body.vel.x = 0;
+				//slightly moves player backwards
 				this.pos.x = this.pos.x -1;
 			}
+			//if walking in from right and facing left, stop at certain point/prevents differences from overlapping
 			else if(xdif<70 && this.facing==='left' && (xdif>0)){
+				//stops player from moving
 				this.body.vel.x = 0;
+				//slightly moves player backwards
 				this.pos.x = this.pos.x +1;
 			}
 		}
