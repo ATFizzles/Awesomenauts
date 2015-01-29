@@ -132,9 +132,11 @@ game.PlayerEntity = me.Entity.extend({
 			//represents dif between player x position and base x position
 			var xdif = this.pos.x - response.b.pos.x
 
-
+			//y difference for landing on the top of the base
 			if(ydif<-40 && xdif<70 && xdif>-35){
+				//cant fall through base
 				this.body.falling = false;
+				//slightly moves player down once stopped
 				this.body.vel.y = -1;
 			}
 			//if walking in from left and facing right, stop at certain point/prevents differences from overlapping
