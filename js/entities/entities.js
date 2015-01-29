@@ -25,6 +25,10 @@ game.PlayerEntity = me.Entity.extend({
 		//keeps track of which direction your character is going
 		this.facing = "right";
 
+		this.now = new Date().getTime();
+		this.lastHit = this.now;
+		this.lastAttack = new Date().getTime();
+
 		//screen follows wherever player goes on x and y axis
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 
@@ -40,6 +44,7 @@ game.PlayerEntity = me.Entity.extend({
 	},
 	//what happens on the fly
 	update: function(delta){
+		this.now = new Date().getTime();
 		//checks if right key was pressed
 		if(me.input.isKeyPressed("right")){
 			//adds to the position of my x by the velocity defined above in setVelocity()
@@ -86,29 +91,15 @@ game.PlayerEntity = me.Entity.extend({
 		}
 
 		//walk animation only if character is moving
-		else if(this.body.vel.x !== 0){
+		else if(this.body.vel.x !== 0 && !this.renderable.isCurrentAnimation("attack")){
 			//doesnt start walk animation if it is already walking
 			if(!this.renderable.isCurrentAnimation("walk")){
 			this.renderable.setCurrentAnimation("walk");
 			}
 		}
 		//if velocity is 0 set to idle
-		else{
+		else if(!this.renderable.isCurrentAnimation("attack")){
 			this.renderable.setCurrentAnimation("idle");
-		}
-
-		//if attack key is pressed...
-		if(me.input.isKeyPressed("attack")){
-			//if current animation isnt attack then sets current animation to attack then idle
-			if(!this.renderable.isCurrentAnimation("attack")){
-				//sets the current animation to attack and once that is over
-				//goes back to the idle animation
-				this.renderable.setCurrentAnimation("attack", "idle");
-				//makes it so that the next time we start this sequence we begin
-				//from the first animation, not wherever we left off when we
-				//switched to another animation
-				this.renderable.setAnimationFrame();
-			}
 		}
 
 		//checks for collisions/passes function into collideHandler
@@ -152,6 +143,11 @@ game.PlayerEntity = me.Entity.extend({
 				this.body.vel.x = 0;
 				//slightly moves player backwards
 				this.pos.x = this.pos.x +1;
+			}
+
+			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= 1000){
+				this.lastHit = this.now;
+				response.b.loseHealth();
 			}
 		}
 	}
@@ -258,5 +254,9 @@ game.EnemyBaseEntity = me.Entity.extend({
 
 	onCollision: function(){
 		
+	},
+
+	loseHealth: function(){
+		this.health--;
 	}
 });
