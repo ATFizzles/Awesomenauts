@@ -12,7 +12,7 @@ game.resources = [
 	 {name: "player", type:"image", src: "data/img/orcSpear.png"},
 	 //program loads tower
 	 {name: "tower", type:"image", src: "data/img/tower_round.svg.png"},
-
+	 //program loads creep1 image
 	 {name: "creep1", type:"image", src: "data/img/brainmonster.png"},
 
 	/* Atlases 

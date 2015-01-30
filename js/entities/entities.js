@@ -273,8 +273,11 @@ game.EnemyBaseEntity = me.Entity.extend({
 	}
 });
 
+//adding new EnemyCreep class
 game.EnemyCreep = me.Entity.extend({
+	//init function w/ parameters x, y, and settings
 	init: function(x, y, settings){
+		//call to super and pass in settings
 		this._super(me.Entity, 'init', [x, y, {
 			image: "creep1",
 			width: 32,
@@ -285,14 +288,17 @@ game.EnemyCreep = me.Entity.extend({
 				return (new me.Rect(0, 0, 32, 64)).toPolygon();
 			}
 		}]);
+		//gives health of 10
 		this.health = 10;
+		//always updates
 		this.alwaysUpdate = true;
-
+		//sets movement speed
 		this.setVelocity(3, 20);
-
+		//sets type of player
 		this.type = "EnemyCreep";
-
+		//adds walking animation
 		this.renderable.addAnimation("walk", [3, 4, 5], 80);
+		//sets walk animation
 		this.renderable.setCurrentAnimation("walk");
 	},
 

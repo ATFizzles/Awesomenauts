@@ -47,6 +47,7 @@ var game = {
 		//registering both bases (show up on screen)
 		me.pool.register("PlayerBase", game.PlayerBaseEntity);
 		me.pool.register("EnemyBase", game.EnemyBaseEntity);
+		//registering EnemyCreep class
 		me.pool.register("EnemyCreep", game.EnemyCreep, true);
 
 		me.state.set(me.state.MENU, new game.TitleScreen());
