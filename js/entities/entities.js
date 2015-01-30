@@ -25,9 +25,12 @@ game.PlayerEntity = me.Entity.extend({
 		//keeps track of which direction your character is going
 		this.facing = "right";
 
+		//keeps track of what time it is
 		this.now = new Date().getTime();
+		//tracks last hit
 		this.lastHit = this.now;
-		this.lastAttack = new Date().getTime();
+		//creates hit delay
+		this.lastAttack = new Date().getTime(); //Havent used attack variable yet
 
 		//screen follows wherever player goes on x and y axis
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
@@ -44,6 +47,7 @@ game.PlayerEntity = me.Entity.extend({
 	},
 	//what happens on the fly
 	update: function(delta){
+		//updates this.now(keeps timer up to date)
 		this.now = new Date().getTime();
 		//checks if right key was pressed
 		if(me.input.isKeyPressed("right")){
@@ -91,6 +95,7 @@ game.PlayerEntity = me.Entity.extend({
 		}
 
 		//walk animation only if character is moving
+		//only if there is no current attack animation
 		else if(this.body.vel.x !== 0 && !this.renderable.isCurrentAnimation("attack")){
 			//doesnt start walk animation if it is already walking
 			if(!this.renderable.isCurrentAnimation("walk")){
@@ -98,6 +103,7 @@ game.PlayerEntity = me.Entity.extend({
 			}
 		}
 		//if velocity is 0 set to idle
+		//set to idle if not currently attacking
 		else if(!this.renderable.isCurrentAnimation("attack")){
 			this.renderable.setCurrentAnimation("idle");
 		}
@@ -145,8 +151,12 @@ game.PlayerEntity = me.Entity.extend({
 				this.pos.x = this.pos.x +1;
 			}
 
+			//if you are attacking, and in contact with base
+			//makes sure health is greater than 1000 milliseconds
 			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= 1000){
+				//delays hit for a bit
 				this.lastHit = this.now;
+				//calls loose health function
 				response.b.loseHealth();
 			}
 		}
@@ -256,7 +266,9 @@ game.EnemyBaseEntity = me.Entity.extend({
 		
 	},
 
+	//new health function
 	loseHealth: function(){
+		//makes health go down by 1
 		this.health--;
 	}
 });
