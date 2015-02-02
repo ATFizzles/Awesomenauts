@@ -304,7 +304,7 @@ game.EnemyCreep = me.Entity.extend({
 
 	//delta represents time as a parameter
 	update: function(delta){
-		
+		//actually moves the creep (left)
 		this.body.vel.x -= this.body.accel.x * me.timer.tick;
 		//updates time
 		this.body.update(delta);
