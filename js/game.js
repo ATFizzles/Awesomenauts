@@ -49,7 +49,7 @@ var game = {
 		me.pool.register("EnemyBase", game.EnemyBaseEntity);
 		//registering EnemyCreep class
 		me.pool.register("EnemyCreep", game.EnemyCreep, true);
-
+		//registering GameManager class, dont need to set to true cuz only one of them
 		me.pool.register("GameManager", game.GameManager);
 
 		me.state.set(me.state.MENU, new game.TitleScreen());
