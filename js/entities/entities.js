@@ -304,6 +304,12 @@ game.EnemyCreep = me.Entity.extend({
 
 	//delta represents time as a parameter
 	update: function(delta){
+		//creep jumps if x velocity = 0
+		if(this.body.vel.x == 0 && !this.body.jumping && !this.body.falling){
+			this.body.jumping = true;
+			//moves player upwards
+			this.body.vel.y -= this.body.accel.y * me.timer.tick;
+		}
 		//actually moves the creep (left)
 		this.body.vel.x -= this.body.accel.x * me.timer.tick;
 		//updates time
