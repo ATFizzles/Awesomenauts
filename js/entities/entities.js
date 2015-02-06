@@ -302,6 +302,7 @@ game.EnemyCreep = me.Entity.extend({
 		this.lastAttacking = new Date().getTime();
 		//keeps track of the last time our creep hit anything
 		this.lastHit = new Date().getTime();
+		//timer for enemy attack
 		this.now = new Date().getTime();
 		//sets movement speed
 		this.body.setVelocity(3, 20);
@@ -315,6 +316,7 @@ game.EnemyCreep = me.Entity.extend({
 
 	//delta represents time as a parameter
 	update: function(delta){
+		//refreshes every single time
 		this.now = new Date().getTime();
 		//creep jumps if x velocity = 0
 		//if(this.body.vel.x == 0 && !this.body.jumping && !this.body.falling){
@@ -325,6 +327,7 @@ game.EnemyCreep = me.Entity.extend({
 		//actually moves the creep (left)
 		this.body.vel.x -= this.body.accel.x * me.timer.tick;
 
+		//checks for collisions 
 		me.collision.check(this, true, this.collideHandler.bind(this), true);
 		//updates time
 		this.body.update(delta);
@@ -335,8 +338,11 @@ game.EnemyCreep = me.Entity.extend({
 		return true;
 	},
 
+	//new collideHandler function
 	collideHandler: function(response){
+		//if creep is touching base...
 		if(response.b.type==='PlayerBase'){
+			//...it is attacking base
 			this.attacking=true;
 			//this.lastAttacking=this.now;
 			this.body.vel.x = 0;
@@ -347,7 +353,7 @@ game.EnemyCreep = me.Entity.extend({
 				//updates the lasthit timer
 				this.lastHit = this.now;
 				//makes the player base call its loseHealth function and passes it a
-				//damage of 1
+				//damage of 1000
 				response.b.loseHealth(1);
 			}
 		}
