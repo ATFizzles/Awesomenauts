@@ -18,7 +18,9 @@ game.PlayerEntity = me.Entity.extend({
 			}
 		}]);
 
+		//new player entity
 		this.type = "PlayerEntity";
+		//sets health of player to 20
 		this.health = 20;
 		//sets velocity or movement speed for player
 		//changed y movement
@@ -122,8 +124,9 @@ game.PlayerEntity = me.Entity.extend({
 		return true;
 	},
 
-
+	//new loseHealth function
 	loseHealth: function(damage){
+		//if player gets hit...health gets subtracted by amount of damage
 		this.health = this.health - damage;
 	},
 
@@ -136,9 +139,8 @@ game.PlayerEntity = me.Entity.extend({
 			//represents dif between player x position and base x position
 			var xdif = this.pos.x - response.b.pos.x;
 
-			console.log(xdif);
 			//y difference for landing on the top of the base
-			if(ydif<-40 && xdif<70 && xdif>-35){
+			if(ydif<-50 && xdif<70 && xdif>-35){
 				//cant fall through base
 				this.body.falling = false;
 				//slightly moves player down once stopped
@@ -363,15 +365,18 @@ game.EnemyCreep = me.Entity.extend({
 				//updates the lasthit timer
 				this.lastHit = this.now;
 				//makes the player base call its loseHealth function and passes it a
-				//damage of 1000
+				//damage of 1
 				response.b.loseHealth(1);
 			}
 		}
+		//if creep touches player...
 		else if(response.b.type==='PlayerEntity'){
-				var.xdif = this.pos.x - response.b.pos.x;
+				//sees what x dif is by position of creep - position of player
+				var xdif = this.pos.x - response.b.pos.x;
 				//...it is attacking base
 				this.attacking=true;
 				
+				//position changes only happen if creep is attacking
 				if(xdif>0){
 					//keeps moving the creep to the right to maintain its position
 					this.pos.x = this.pos.x +1;
@@ -379,6 +384,7 @@ game.EnemyCreep = me.Entity.extend({
 					this.body.vel.x = 0;
 				}
 				//checks that it has been at least 1 second since this creep hit something
+				//health only lost if creep is attacking
 				if((this.now-this.lastHit >= 1000) && xdif>0){
 					//updates the lasthit timer
 					this.lastHit = this.now;
