@@ -170,28 +170,44 @@ game.PlayerEntity = me.Entity.extend({
 				response.b.loseHealth();
 			}
 		}
+		//if touching enemy creep...
 		else if(response.b.type==='EnemyCreep'){
+			//new variables
 			var xdif = this.pos.x - response.b.pos.x;
 			var ydif = this.pos.y - response.b.pos.y;
 
+			//if xdif is greater than 0...not on far left of screen...
 			if(xdif>0){
+				//moves player to right 1
 				this.pos.x = this.pos.x + 1;
+				//if facing left though
 				if(this.facing==="left"){
+					//stops player
 					this.body.vel.x = 0;
 				}
 			}
 
 			else{
+				//moves player to left 1
 				this.pos.x = this.pos.x - 1;
+				//if facing right though
 				if(this.facing==="right"){
+					//stops player
 					this.body.vel.x = 0;
 				}
 			}
 
+			//if player is attacking and hasn't attacked for atleast 1 second...
 			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= 1000
+				//starts absolute value of y difference..no greater than 40
 			 && (Math.abs(ydif) <=40) && 
+			 //if x difference is greater than 0 and player is facing left...
+			 //|| means or
+			 //if x difference is less than 0 and player is facing right...
+			 //player can only attack creep if it is facing towards it
 			 (((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right"))
 			 ){
+				//makes creep lose health 
 				this.lastHit = this.now;
 				response.b.loseHealth(1);
 			}
@@ -350,14 +366,18 @@ game.EnemyCreep = me.Entity.extend({
 		this.renderable.setCurrentAnimation("walk");
 	},
 
+	//new loseHealth function
 	loseHealth: function(damage){
+		//subtracts damage from health
 		this.health = this.health - damage;
 	},
 
 	//delta represents time as a parameter
 	update: function(delta){
 		console.log(this.health);
+		//if health is less than or equal to 0...
 		if(this.health <= 0){
+			//removes creep from game(basically dies)
 			me.game.world.removeChild(this);
 		}
 		//refreshes every single time
