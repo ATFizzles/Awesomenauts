@@ -170,6 +170,32 @@ game.PlayerEntity = me.Entity.extend({
 				response.b.loseHealth();
 			}
 		}
+		else if(response.b.type==='EnemyCreep'){
+			var xdif = this.pos.x - response.b.pos.x;
+			var ydif = this.pos.y - response.b.pos.y;
+
+			if(xdif>0){
+				this.pos.x = this.pos.x + 1;
+				if(this.facing==="left"){
+					this.body.vel.x = 0;
+				}
+			}
+
+			else{
+				this.pos.x = this.pos.x - 1;
+				if(this.facing==="right"){
+					this.body.vel.x = 0;
+				}
+			}
+
+			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= 1000
+			 && (Math.abs(ydif) <=40) && 
+			 (((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right"))
+			 ){
+				this.lastHit = this.now;
+				response.b.loseHealth(1);
+			}
+		}
 	}
 });
 
@@ -303,7 +329,7 @@ game.EnemyCreep = me.Entity.extend({
 			}
 		}]);
 		//gives health of 10
-		this.health = 10;
+		this.health = 1;
 		//always updates
 		this.alwaysUpdate = true;
 		//this.attacking lets us know if the enemy is currently attacking
@@ -324,19 +350,27 @@ game.EnemyCreep = me.Entity.extend({
 		this.renderable.setCurrentAnimation("walk");
 	},
 
+	loseHealth: function(damage){
+		this.health = this.health - damage;
+	},
+
 	//delta represents time as a parameter
 	update: function(delta){
+		console.log(this.health);
+		if(this.health <= 0){
+			me.game.world.removeChild(this);
+		}
 		//refreshes every single time
 		this.now = new Date().getTime();
 
 		
 		//creep jumps if x velocity = 0
 		//I need to have creep jump if velocity = 0 and hits the certain block
-		if(this.body.vel.x == 0 && !this.body.jumping && !this.body.falling ){
-			this.body.jumping = true;
+		//if(this.body.vel.x == 0 && !this.body.jumping && !this.body.falling ){
+		//	this.body.jumping = true;
 			//moves player upwards
-			this.body.vel.y -= this.body.accel.y * me.timer.tick;
-		}
+		//	this.body.vel.y -= this.body.accel.y * me.timer.tick;
+		//}
 		//actually moves the creep (left)
 		this.body.vel.x -= this.body.accel.x * me.timer.tick;
 
