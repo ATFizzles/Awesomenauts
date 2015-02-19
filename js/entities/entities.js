@@ -60,12 +60,6 @@ game.PlayerEntity = me.Entity.extend({
 		if(this.health <=0){
 			//player is dead
 			this.dead = true;
-			//if dead..sets location for player to spawn
-			this.pos.x = 10;
-			this.pos.y = 0;
-			//sets playerHealth
-			//player respawns with full health
-			this.health = game.data.playerHealth;
 		}
 		//checks if right key was pressed
 		if(me.input.isKeyPressed("right")){
@@ -165,14 +159,14 @@ game.PlayerEntity = me.Entity.extend({
 				//stops player from moving
 				this.body.vel.x = 0;
 				//slightly moves player backwards
-				this.pos.x = this.pos.x -1;
+				//this.pos.x = this.pos.x -1;
 			}
 			//if walking in from right and facing left, stop at certain point/prevents differences from overlapping
 			else if(xdif<70 && this.facing==='left' && (xdif>0)){
 				//stops player from moving
 				this.body.vel.x = 0;
 				//slightly moves player backwards
-				this.pos.x = this.pos.x +1;
+				//this.pos.x = this.pos.x +1;
 			}
 
 			//if you are attacking, and in contact with base
@@ -194,7 +188,7 @@ game.PlayerEntity = me.Entity.extend({
 			//if xdif is greater than 0...not on far left of screen...
 			if(xdif>0){
 				//moves player to right 1
-				this.pos.x = this.pos.x + 1;
+				//this.pos.x = this.pos.x + 1;
 				//if facing left though
 				if(this.facing==="left"){
 					//stops player
@@ -204,7 +198,7 @@ game.PlayerEntity = me.Entity.extend({
 
 			else{
 				//moves player to left 1
-				this.pos.x = this.pos.x - 1;
+				//this.pos.x = this.pos.x - 1;
 				//if facing right though
 				if(this.facing==="right"){
 					//stops player
@@ -485,6 +479,14 @@ game.GameManager = Object.extend({
 	update: function(){
 		//keeps track of timer
 		this.now = new Date().getTime();
+
+		
+		if(game.data.player.dead){
+			//removes character from the map
+			me.game.world.removeChild(game.data.player);
+			//respawns player at (10, 0)
+			me.state.current().resetPlayer(10, 0);
+		}
 
 		//keeps track of if it needs to make a new creep
 		//rounds to 10 on one second interval

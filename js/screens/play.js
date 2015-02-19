@@ -5,13 +5,10 @@ game.PlayScreen = me.ScreenObject.extend({
 	onResetEvent: function() {
 		// reset the score
 		game.data.score = 0;
-
 		//loads the proper level within game
 		me.levelDirector.loadLevel("level01");
-		//adds player by pulling instance of that player
-		var player = me.pool.pull("player", 0, 420, {});
-		//adds player to world and chooses where the character spawns
-		me.game.world.addChild(player, 5);
+		//resets player position
+		this.resetPlayer(0, 420);
 		//new gamemanager variable
 		var gamemanager = me.pool.pull("GameManager", 0, 0, {});
 		//adds gamemanager variable to the world
@@ -36,5 +33,14 @@ game.PlayScreen = me.ScreenObject.extend({
 	onDestroyEvent: function() {
 		// remove the HUD from the game world
 		me.game.world.removeChild(this.HUD);
+	},
+
+	//new reset player function 
+	//passes x and y
+	resetPlayer: function(x, y){
+		//adds player by pulling instance of that player
+		game.data.player = me.pool.pull("player", x, y, {});
+		//adds player to world and chooses where the character spawns
+		me.game.world.addChild(game.data.player, 5);
 	}
 });
