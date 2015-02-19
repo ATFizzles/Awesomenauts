@@ -480,7 +480,7 @@ game.GameManager = Object.extend({
 		//keeps track of timer
 		this.now = new Date().getTime();
 
-		
+		//if player dies...
 		if(game.data.player.dead){
 			//removes character from the map
 			me.game.world.removeChild(game.data.player);
