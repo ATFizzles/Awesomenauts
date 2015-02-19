@@ -20,7 +20,7 @@ game.PlayerEntity = me.Entity.extend({
 
 		//new player entity
 		this.type = "PlayerEntity";
-		//sets health of player to 20
+		//sets health of player to playerHealth
 		this.health = game.data.playerHealth;
 		//sets velocity or movement speed for player
 		//changed y movement
@@ -33,6 +33,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.now = new Date().getTime();
 		//tracks last hit
 		this.lastHit = this.now;
+		//player is not dead initially
 		this.dead = false;
 		//creates hit delay
 		this.lastAttack = new Date().getTime(); //Havent used attack variable yet
@@ -55,10 +56,15 @@ game.PlayerEntity = me.Entity.extend({
 		//updates this.now(keeps timer up to date)
 		this.now = new Date().getTime();
 
+		//if health ever goes below 0...
 		if(this.health <=0){
+			//player is dead
 			this.dead = true;
+			//if dead..sets location for player to spawn
 			this.pos.x = 10;
 			this.pos.y = 0;
+			//sets playerHealth
+			//player respawns with full health
 			this.health = game.data.playerHealth;
 		}
 		//checks if right key was pressed
@@ -170,11 +176,12 @@ game.PlayerEntity = me.Entity.extend({
 			}
 
 			//if you are attacking, and in contact with base
-			//makes sure health is greater than 1000 milliseconds
+			//sets intervals between attacks
 			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer){
 				//delays hit for a bit
 				this.lastHit = this.now;
 				//calls loose health function
+				//passes game.data.playerAttack (how much damage player deals)
 				response.b.loseHealth(game.data.playerAttack);
 			}
 		}
@@ -205,7 +212,7 @@ game.PlayerEntity = me.Entity.extend({
 				}
 			}
 
-			//if player is attacking and hasn't attacked for atleast 1 second...
+			//if player is attacking and hasn't attacked for the set amount of time...
 			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer
 				//starts absolute value of y difference..no greater than 40
 			 && (Math.abs(ydif) <=40) && 
@@ -217,6 +224,8 @@ game.PlayerEntity = me.Entity.extend({
 			 ){
 				//makes creep lose health 
 				this.lastHit = this.now;
+				//calls loose health function
+				//passes game.data.playerAttack (how much damage player deals)
 				response.b.loseHealth(game.data.playerAttack);
 			}
 		}
@@ -428,7 +437,7 @@ game.EnemyCreep = me.Entity.extend({
 				//updates the lasthit timer
 				this.lastHit = this.now;
 				//makes the player base call its loseHealth function and passes it a
-				//damage of 1
+				//game.data.enemyCreepAttack
 				response.b.loseHealth(game.data.enemyCreepAttack);
 			}
 		}
@@ -452,7 +461,7 @@ game.EnemyCreep = me.Entity.extend({
 					//updates the lasthit timer
 					this.lastHit = this.now;
 					//makes the player call its loseHealth function and passes it a
-					//damage of 1000
+					//game.data.enemyCreepAttack
 					response.b.loseHealth(game.data.enemyCreepAttack);
 				}
 			}

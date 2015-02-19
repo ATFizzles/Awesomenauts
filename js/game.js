@@ -4,7 +4,8 @@ var game = {
 
 	// an object where to store game information
 	data : {
-		// score
+		//adding variables that we need now and for the future
+		//assigning values to these variables
 		score : 0,
 		enemyBaseHealth: 10,
 		playerBaseHealth: 10,
