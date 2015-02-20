@@ -74,6 +74,6 @@ var game = {
 
 		// Start the game.
 		//when game first starts...goes to title screen
-		me.state.change(me.state.MENU);
+		me.state.change(me.state.PLAY);
 	}
 };

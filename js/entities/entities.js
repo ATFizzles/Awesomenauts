@@ -385,7 +385,6 @@ game.EnemyCreep = me.Entity.extend({
 
 	//delta represents time as a parameter
 	update: function(delta){
-		console.log(this.health);
 		//if health is less than or equal to 0...
 		if(this.health <= 0){
 			//removes creep from game(basically dies)
@@ -394,14 +393,14 @@ game.EnemyCreep = me.Entity.extend({
 		//refreshes every single time
 		this.now = new Date().getTime();
 
-		
+		var xdif = this.pos.x;
 		//creep jumps if x velocity = 0
 		//I need to have creep jump if velocity = 0 and hits the certain block
-		//if(this.body.vel.x == 0 && !this.body.jumping && !this.body.falling ){
-		//	this.body.jumping = true;
+		if(xdif===631 && this.body.vel.x == 0 && !this.body.jumping && !this.body.falling ){
+			this.body.jumping = true;
 			//moves player upwards
-		//	this.body.vel.y -= this.body.accel.y * me.timer.tick;
-		//}
+			this.body.vel.y -= this.body.accel.y * me.timer.tick;
+		}
 		//actually moves the creep (left)
 		this.body.vel.x -= this.body.accel.x * me.timer.tick;
 
