@@ -17,6 +17,10 @@ var game = {
 		//orcBaseHealth: 100,
 		//orcBaseSpeed: 3,
 		//orcBaseDefense: 0,
+		gloopHealth: 5,
+		gloopAttack: 5,
+		gloopAttackTimer: 1000,
+		gloopMoveSpeed: 5,
 		playerAttackTimer: 1000,
 		enemyCreepAttackTimer: 1000,
 		playerMoveSpeed: 5, 
@@ -66,6 +70,8 @@ var game = {
 		me.pool.register("EnemyBase", game.EnemyBaseEntity);
 		//registering EnemyCreep class
 		me.pool.register("EnemyCreep", game.EnemyCreep, true);
+
+		me.pool.register("gloop", game.Gloop, true);
 		//registering GameManager class, dont need to set to true cuz only one of them
 		me.pool.register("GameManager", game.GameManager);
 
