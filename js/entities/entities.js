@@ -35,6 +35,8 @@ game.PlayerEntity = me.Entity.extend({
 		this.lastHit = this.now;
 		//player is not dead initially
 		this.dead = false;
+
+		this.attack = game.data.playerAttack;
 		//creates hit delay
 		this.lastAttack = new Date().getTime(); //Havent used attack variable yet
 
@@ -218,6 +220,11 @@ game.PlayerEntity = me.Entity.extend({
 			 ){
 				//makes creep lose health 
 				this.lastHit = this.now;
+
+				if(response.b.health <= game.data.playerAttack){
+					game.data.gold += 1;
+					console.log("Current gold: " + game.data.gold);
+				}
 				//calls loose health function
 				//passes game.data.playerAttack (how much damage player deals)
 				response.b.loseHealth(game.data.playerAttack);
@@ -589,6 +596,7 @@ game.GameManager = Object.extend({
 		this.now = new Date().getTime();
 		//keeps track of the last creep that spawned
 		this.lastCreep = new Date().getTime();
+		this.paused = false;
 		//keeps program updating
 		this.alwaysUpdate = true;
 	},
@@ -604,6 +612,16 @@ game.GameManager = Object.extend({
 			//respawns player at (10, 0)
 			me.state.current().resetPlayer(10, 0);
 		}
+
+
+		//keeps track of if it needs to make a new creep
+		//rounds to 10 on one second interval
+		//makes sure creeps dont spawn within a second
+		if(Math.round(this.now/1000)%20 ===0 && (this.now - this.lastCreep >= 1000)){
+			game.data.gold += 1;
+			console.log("Current gold: " + game.data.gold);
+		}
+
 
 		//keeps track of if it needs to make a new creep
 		//rounds to 10 on one second interval
