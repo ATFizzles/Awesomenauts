@@ -2,6 +2,25 @@
 game.PlayerEntity = me.Entity.extend({
 	//init is constructor function with 3 parameters
 	init: function(x, y, settings){
+		this.setSuper();
+		this.setPlayerTimers();
+		this.setAttributes();
+
+		//new player entity
+		this.type = "PlayerEntity";
+
+		this.setFlags();
+
+		//screen follows wherever player goes on x and y axis
+		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
+
+		this.addAnimation();
+
+		//sets an animation to start with (default)
+		this.renderable.setCurrentAnimation("idle");
+	},
+
+	setSuper: function(){
 		//reaches to the constructor of entity
 		//passes settings through []s
 		this._super(me.Entity, 'init', [x, y, {
@@ -17,42 +36,43 @@ game.PlayerEntity = me.Entity.extend({
 				return(new me.Rect(0, 0, 64, 64)).toPolygon();
 			}
 		}]);
+	},
 
-		//new player entity
-		this.type = "PlayerEntity";
+	setPlayerTimers: function(){
+		//keeps track of what time it is
+		this.now = new Date().getTime();
+		//tracks last hit
+		this.lastHit = this.now;
+		//creates hit delay
+		this.lastAttack = new Date().getTime(); //Havent used attack variable yet
+	},
+
+	setAttributes: function(){
 		//sets health of player to playerHealth
 		this.health = game.data.playerHealth;
 		//sets velocity or movement speed for player
 		//changed y movement
 		this.body.setVelocity(game.data.playerMoveSpeed, 20);
-
-		//keeps track of which direction your character is going
-		this.facing = "right";
-
-		//keeps track of what time it is
-		this.now = new Date().getTime();
-		//tracks last hit
-		this.lastHit = this.now;
-		//player is not dead initially
-		this.dead = false;
 		//setting up attack variable
 		this.attack = game.data.playerAttack;
-		//creates hit delay
-		this.lastAttack = new Date().getTime(); //Havent used attack variable yet
+	},
 
-		//screen follows wherever player goes on x and y axis
-		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
+	setFlags: function(){
+		//keeps track of which direction your character is going
+		this.facing = "right";
+		//player is not dead initially
+		this.dead = false;
+	},
 
+	addAnimation: function(){
 		//adding "idle animation"
 		this.renderable.addAnimation("idle", [78]);
 		//adding "walk" animation and setting images to use
 		this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 122, 123, 124, 125], 80);
 		//adding "attack" animation
 		this.renderable.addAnimation("attack", [65, 66, 67, 68, 69, 70, 71, 72], 80);
-
-		//sets an animation to start with (default)
-		this.renderable.setCurrentAnimation("idle");
 	},
+
 	//what happens on the fly
 	update: function(delta){
 		//updates this.now(keeps timer up to date)
