@@ -2,24 +2,25 @@
 game.PlayerEntity = me.Entity.extend({
 	//init is constructor function with 3 parameters
 	init: function(x, y, settings){
+		//new setSuper class
 		this.setSuper();
+		//new setPlayerTimers class
 		this.setPlayerTimers();
+		//new setAttributes class
 		this.setAttributes();
-
 		//new player entity
 		this.type = "PlayerEntity";
-
+		//new setFlags class
 		this.setFlags();
-
 		//screen follows wherever player goes on x and y axis
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
-
+		//new addAnimation class
 		this.addAnimation();
-
 		//sets an animation to start with (default)
 		this.renderable.setCurrentAnimation("idle");
 	},
 
+	//new setSuper function
 	setSuper: function(){
 		//reaches to the constructor of entity
 		//passes settings through []s
@@ -38,6 +39,7 @@ game.PlayerEntity = me.Entity.extend({
 		}]);
 	},
 
+	//new setPlayerTimers function
 	setPlayerTimers: function(){
 		//keeps track of what time it is
 		this.now = new Date().getTime();
@@ -47,6 +49,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.lastAttack = new Date().getTime(); //Havent used attack variable yet
 	},
 
+	//new setAttributes function
 	setAttributes: function(){
 		//sets health of player to playerHealth
 		this.health = game.data.playerHealth;
@@ -57,6 +60,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.attack = game.data.playerAttack;
 	},
 
+	//new setFlags function
 	setFlags: function(){
 		//keeps track of which direction your character is going
 		this.facing = "right";
@@ -64,6 +68,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.dead = false;
 	},
 
+	//new addAnimation function
 	addAnimation: function(){
 		//adding "idle animation"
 		this.renderable.addAnimation("idle", [78]);
