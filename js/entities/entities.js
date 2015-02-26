@@ -82,9 +82,9 @@ game.PlayerEntity = me.Entity.extend({
 	update: function(delta){
 		//updates this.now(keeps timer up to date)
 		this.now = new Date().getTime();
-
+		//new dead class
 		this.dead = checkIfDead();
-
+		//new checkKeyPressesAndMove class
 		this.checkKeyPressesAndMove();
 
 		//if attack key is pressed...
@@ -127,15 +127,18 @@ game.PlayerEntity = me.Entity.extend({
 		return true;
 	},
 
+	//new checkIfDead function
 	checkIfDead: function(){
 		//if health ever goes below 0...
 		if(this.health <=0){
 			//player is dead
+			//dont actually want to set yourself to dead here
 			return true;
 		}
 		return false;
 	},
 
+	//new checkKeyPressesAndMove function
 	checkKeyPressesAndMove: function(){
 		//checks if right key was pressed
 		if(me.input.isKeyPressed("right")){
@@ -155,6 +158,7 @@ game.PlayerEntity = me.Entity.extend({
 		}
 	},
 
+	//new moveRight function
 	moveRight: function(){
 		//adds to the position of my x by the velocity defined above in setVelocity()
 		//and multiplying it by me.timer.tick
@@ -166,6 +170,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.flipX(true);
 	},
 
+	//new moveLeft function
 	moveLeft: function(){
 		//moves player left
 		this.body.vel.x -= this.body.accel.x * me.timer.tick;
@@ -175,6 +180,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.flipX(false);
 	},
 
+	//new jump function
 	jump: function(){
 		this.body.jumping = true;
 		//moves player upwards
