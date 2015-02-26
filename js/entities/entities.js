@@ -83,41 +83,9 @@ game.PlayerEntity = me.Entity.extend({
 		//updates this.now(keeps timer up to date)
 		this.now = new Date().getTime();
 
-		//if health ever goes below 0...
-		if(this.health <=0){
-			//player is dead
-			this.dead = true;
-		}
-		//checks if right key was pressed
-		if(me.input.isKeyPressed("right")){
-			//adds to the position of my x by the velocity defined above in setVelocity()
-			//and multiplying it by me.timer.tick
-			//me.timer.tick makes movement look smooth
-			this.body.vel.x += this.body.accel.x * me.timer.tick;
-			//makes character face right
-			this.facing = "right";
-			//flips animation position 180 degrees
-			this.flipX(true);
-		}
-		//checks if left key was pressed
-		else if(me.input.isKeyPressed("left")){
-			//moves player left
-			this.body.vel.x -= this.body.accel.x * me.timer.tick;
-			//makes character face left	
-			this.facing = "left";
-			//false b/c dont want player to look like he is walking right
-			this.flipX(false);
-		}
-		//if right is not clicked, dont move
-		else{
-			this.body.vel.x = 0;
-		}
-		//checks if space bar was pressed/cant jump while in air
-		if(me.input.isKeyPressed("jump") && !this.body.jumping && !this.body.falling){
-			this.body.jumping = true;
-			//moves player upwards
-			this.body.vel.y -= this.body.accel.y * me.timer.tick;
-		}
+		this.dead = checkIfDead();
+
+		this.checkKeyPressesAndMove();
 
 		//if attack key is pressed...
 		if(me.input.isKeyPressed("attack")){
@@ -158,6 +126,60 @@ game.PlayerEntity = me.Entity.extend({
 		this._super(me.Entity, "update", [delta]);
 		return true;
 	},
+
+	checkIfDead: function(){
+		//if health ever goes below 0...
+		if(this.health <=0){
+			//player is dead
+			return true;
+		}
+		return false;
+	},
+
+	checkKeyPressesAndMove: function(){
+		//checks if right key was pressed
+		if(me.input.isKeyPressed("right")){
+			this.moveRight();
+		}
+		//checks if left key was pressed
+		else if(me.input.isKeyPressed("left")){
+			this.moveLeft();
+		}
+		//if right is not clicked, dont move
+		else{
+			this.body.vel.x = 0;
+		}
+		//checks if space bar was pressed/cant jump while in air
+		if(me.input.isKeyPressed("jump") && !this.body.jumping && !this.body.falling){
+			this.jump();
+		}
+	},
+
+	moveRight: function(){
+		//adds to the position of my x by the velocity defined above in setVelocity()
+		//and multiplying it by me.timer.tick
+		//me.timer.tick makes movement look smooth
+		this.body.vel.x += this.body.accel.x * me.timer.tick;
+		//makes character face right
+		this.facing = "right";
+		//flips animation position 180 degrees
+		this.flipX(true);
+	},
+
+	moveLeft: function(){
+		//moves player left
+		this.body.vel.x -= this.body.accel.x * me.timer.tick;
+		//makes character face left	
+		this.facing = "left";
+		//false b/c dont want player to look like he is walking right
+		this.flipX(false);
+	},
+
+	jump: function(){
+		this.body.jumping = true;
+		//moves player upwards
+		this.body.vel.y -= this.body.accel.y * me.timer.tick;
+	}
 
 	//new loseHealth function
 	loseHealth: function(damage){
