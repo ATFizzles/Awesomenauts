@@ -214,6 +214,7 @@ game.PlayerEntity = me.Entity.extend({
 		}
 	},
 
+	//new collideWithEnemyBase function
 	collideWithEnemyBase: function(response){
 			//represents dif between player y position and base y position
 			var ydif = this.pos.y - response.b.pos.y;
@@ -249,20 +250,26 @@ game.PlayerEntity = me.Entity.extend({
 			}
 	},
 
+	//new collideWithEnemyCreep function
 	collideWithEnemyCreep: function(response){
 			//new variables
 			var xdif = this.pos.x - response.b.pos.x;
 			var ydif = this.pos.y - response.b.pos.y;
 
+			//new stopMovement class
+			//passes xdif as parameter
 			this.stopMovement(xdif);
-
+			//if new checkAttack class...
 			if(this.checkAttack(xdif, ydif)){
+				//new hitCreep class
+				//passes response
 				this.hitCreep(response);
 			};
 
 			
 	},
 
+	//new stopMovement function
 	stopMovement: function(xdif){
 		//if xdif is greater than 0...not on far left of screen...
 			if(xdif>0){
@@ -282,6 +289,7 @@ game.PlayerEntity = me.Entity.extend({
 			}
 	},
 
+	//new checkAttack function
 	checkAttack: function(xdif, ydif){
 		//if player is attacking and hasn't attacked for the set amount of time...
 			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer
@@ -296,11 +304,14 @@ game.PlayerEntity = me.Entity.extend({
 				//makes creep lose health 
 				this.lastHit = this.now;
 
+				//statement is true
 				return true;
 			}
+			//else it is false
 			return false;
 	},
 
+	//new hitCreep function
 	hitCreep: function(response){
 		//if creep health is less than player attack...
 				if(response.b.health <= game.data.playerAttack){
