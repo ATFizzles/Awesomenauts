@@ -206,6 +206,15 @@ game.PlayerEntity = me.Entity.extend({
 	collideHandler: function(response){
 		//response.b = enemy base entity
 		if(response.b.type==='EnemyBaseEntity'){
+			this.collideWithEnemyBase(response);
+		}
+		//if touching enemy creep...
+		else if(response.b.type==='EnemyCreep'){
+			this.collideWithEnemyCreep(response):
+		}
+	},
+
+	collideWithEnemyBase: function(response){
 			//represents dif between player y position and base y position
 			var ydif = this.pos.y - response.b.pos.y;
 			//represents dif between player x position and base x position
@@ -222,15 +231,11 @@ game.PlayerEntity = me.Entity.extend({
 			else if(xdif>-35 && this.facing==='right' && (xdif<0)) {
 				//stops player from moving
 				this.body.vel.x = 0;
-				//slightly moves player backwards
-				//this.pos.x = this.pos.x -1;
 			}
 			//if walking in from right and facing left, stop at certain point/prevents differences from overlapping
 			else if(xdif<70 && this.facing==='left' && (xdif>0)){
 				//stops player from moving
 				this.body.vel.x = 0;
-				//slightly moves player backwards
-				//this.pos.x = this.pos.x +1;
 			}
 
 			//if you are attacking, and in contact with base
@@ -242,17 +247,25 @@ game.PlayerEntity = me.Entity.extend({
 				//passes game.data.playerAttack (how much damage player deals)
 				response.b.loseHealth(game.data.playerAttack);
 			}
-		}
-		//if touching enemy creep...
-		else if(response.b.type==='EnemyCreep'){
+	},
+
+	collideWithEnemyCreep: function(response){
 			//new variables
 			var xdif = this.pos.x - response.b.pos.x;
 			var ydif = this.pos.y - response.b.pos.y;
 
-			//if xdif is greater than 0...not on far left of screen...
+			this.stopMovement(xdif);
+
+			if(this.checkAttack(xdif, ydif)){
+				this.hitCreep(response);
+			};
+
+			
+	},
+
+	stopMovement: function(xdif){
+		//if xdif is greater than 0...not on far left of screen...
 			if(xdif>0){
-				//moves player to right 1
-				//this.pos.x = this.pos.x + 1;
 				//if facing left though
 				if(this.facing==="left"){
 					//stops player
@@ -261,16 +274,16 @@ game.PlayerEntity = me.Entity.extend({
 			}
 
 			else{
-				//moves player to left 1
-				//this.pos.x = this.pos.x - 1;
 				//if facing right though
 				if(this.facing==="right"){
 					//stops player
 					this.body.vel.x = 0;
 				}
 			}
+	},
 
-			//if player is attacking and hasn't attacked for the set amount of time...
+	checkAttack: function(xdif, ydif){
+		//if player is attacking and hasn't attacked for the set amount of time...
 			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer
 				//starts absolute value of y difference..no greater than 40
 			 && (Math.abs(ydif) <=40) && 
@@ -282,7 +295,14 @@ game.PlayerEntity = me.Entity.extend({
 			 ){
 				//makes creep lose health 
 				this.lastHit = this.now;
-				//if creep health is less than player attack...
+
+				return true;
+			}
+			return false;
+	},
+
+	hitCreep: function(response){
+		//if creep health is less than player attack...
 				if(response.b.health <= game.data.playerAttack){
 					//adds one gold for a creep kill
 					game.data.gold += 1;
@@ -291,8 +311,6 @@ game.PlayerEntity = me.Entity.extend({
 				//calls loose health function
 				//passes game.data.playerAttack (how much damage player deals)
 				response.b.loseHealth(game.data.playerAttack);
-			}
-		}
 	}
 });
 
