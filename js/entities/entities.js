@@ -66,7 +66,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.facing = "right";
 		//player is not dead initially
 		this.dead = false;
-
+		//changes original state to not attacking
 		this.attacking= false;
 	},
 
@@ -88,9 +88,8 @@ game.PlayerEntity = me.Entity.extend({
 		this.dead = checkIfDead();
 		//new checkKeyPressesAndMove class
 		this.checkKeyPressesAndMove();
-
+		//new setAnimation class
 		this.setAnimation();
-
 		//checks for collisions/passes function into collideHandler
 		me.collision.check(this, true, this.collideHandler.bind(this), true);
 		//tells all the code to actually work
@@ -133,6 +132,7 @@ game.PlayerEntity = me.Entity.extend({
 			this.jump();
 		}
 
+		//sets this.attacking class to the key being pressed
 		this.attacking = me.input.isKeyPressed("attack");
 	},
 
@@ -165,6 +165,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.body.vel.y -= this.body.accel.y * me.timer.tick;
 	},
 
+	//new setAnimation function
 	setAnimation: function(){
 		//if attack key is pressed...
 		if(this.attacking){
