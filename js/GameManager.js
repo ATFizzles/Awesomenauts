@@ -1,6 +1,6 @@
 //whole class that manages timers
 //not an entity, just an object
-game.GameManager = Object.extend({
+game.GameTimeManager = Object.extend({
 	//uses same functions as usual
 	//constructor function
 	init: function(x, y, settings){
@@ -18,15 +18,14 @@ game.GameManager = Object.extend({
 		//keeps track of timer
 		this.now = new Date().getTime();
 
-		//if player dies...
-		if(game.data.player.dead){
-			//removes character from the map
-			me.game.world.removeChild(game.data.player);
-			//respawns player at (10, 0)
-			me.state.current().resetPlayer(10, 0);
-		}
+		this.goldTimerCheck();
 
+		this.creepTimerCheck();
 
+		return true;
+	},
+
+	goldTimerCheck: function(){
 		//keeps track of the amount of gold you get per creep
 		//rounds to 20 on one second interval
 		//makes sure creeps dont spawn within a second
@@ -35,8 +34,9 @@ game.GameManager = Object.extend({
 			game.data.gold += 1;
 			console.log("Current gold: " + game.data.gold);
 		}
+	},
 
-
+	creepTimerCheck: function(){
 		//keeps track of if it needs to make a new creep
 		//rounds to 10 on one second interval
 		//makes sure creeps dont spawn within a second
@@ -48,7 +48,22 @@ game.GameManager = Object.extend({
 			//adds creep into the world
 			me.game.world.addChild(creepe, 5);
 		}
+	}
+});
 
-		return true;
+
+game.HeroDeathManager = object.extend({
+	init: function(x, y, settings){
+		this.alwaysUpdate = true;
+	},
+
+	update: function(){
+		//if player dies...
+		if(game.data.player.dead){
+			//removes character from the map
+			me.game.world.removeChild(game.data.player);
+			//respawns player at (10, 0)
+			me.state.current().resetPlayer(10, 0);
+		}
 	}
 });

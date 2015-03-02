@@ -25,7 +25,8 @@ var game = {
 		enemyCreepAttackTimer: 1000,
 		playerMoveSpeed: 5, 
 		creepMoveSpeed: 5,
-		gameManager: "",
+		gameTimeManager: "",
+		heroDeathManager: "",
 		player: "",
 		exp: 0,
 		gold: 0,
@@ -79,7 +80,8 @@ var game = {
 
 		me.pool.register("gloop", game.Gloop, true);
 		//registering GameManager class, dont need to set to true cuz only one of them
-		me.pool.register("GameManager", game.GameManager);
+		me.pool.register("GameManager", game.GameTimeManager);
+		me.pool.register("HeroDeathManager", game.HeroDeathManager);
 
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());

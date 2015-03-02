@@ -10,9 +10,15 @@ game.PlayScreen = me.ScreenObject.extend({
 		//resets player position
 		this.resetPlayer(0, 420);
 		//new gamemanager variable
-		var gamemanager = me.pool.pull("GameManager", 0, 0, {});
+		var gameTimerManager = me.pool.pull("GameTimerManager", 0, 0, {});
 		//adds gamemanager variable to the world
-		me.game.world.addChild(gamemanager, 0);
+		me.game.world.addChild(gameTimerManager, 0);
+
+		//new gamemanager variable
+		var heroDeathManager = me.pool.pull("HeroDeathManager", 0, 0, {});
+		//adds gamemanager variable to the world
+		me.game.world.addChild(heroDeathManager, 0);
+
 		//binds right key for movement
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
 		//binds left key for left movement

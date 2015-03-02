@@ -455,7 +455,7 @@ game.Gloop = me.Entity.extend({
 
 //whole class that manages timers
 //not an entity, just an object
-game.GameManager = Object.extend({
+game.GameTimeManager = Object.extend({
 	//uses same functions as usual
 	//constructor function
 	init: function(x, y, settings){
@@ -507,5 +507,7 @@ game.GameManager = Object.extend({
 		return true;
 	}
 });
+
+
 
 	
