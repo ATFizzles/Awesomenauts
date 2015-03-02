@@ -3,6 +3,7 @@ game.PlayerEntity = me.Entity.extend({
 	//init is constructor function with 3 parameters
 	init: function(x, y, settings){
 		//new setSuper class
+		//passes x, y
 		this.setSuper(x, y);
 		//new setPlayerTimers class
 		this.setPlayerTimers();
@@ -21,6 +22,7 @@ game.PlayerEntity = me.Entity.extend({
 	},
 
 	//new setSuper function
+	//passes x, y
 	setSuper: function(x, y){
 		//reaches to the constructor of entity
 		//passes settings through []s
@@ -85,6 +87,7 @@ game.PlayerEntity = me.Entity.extend({
 		//updates this.now(keeps timer up to date)
 		this.now = new Date().getTime();
 		//new dead class
+		//fixed in vid 34
 		this.dead = this.checkIfDead();
 		//new checkKeyPressesAndMove class
 		this.checkKeyPressesAndMove();
