@@ -3,7 +3,7 @@ game.PlayerEntity = me.Entity.extend({
 	//init is constructor function with 3 parameters
 	init: function(x, y, settings){
 		//new setSuper class
-		this.setSuper();
+		this.setSuper(x, y);
 		//new setPlayerTimers class
 		this.setPlayerTimers();
 		//new setAttributes class
@@ -21,7 +21,7 @@ game.PlayerEntity = me.Entity.extend({
 	},
 
 	//new setSuper function
-	setSuper: function(){
+	setSuper: function(x, y){
 		//reaches to the constructor of entity
 		//passes settings through []s
 		this._super(me.Entity, 'init', [x, y, {
@@ -85,7 +85,7 @@ game.PlayerEntity = me.Entity.extend({
 		//updates this.now(keeps timer up to date)
 		this.now = new Date().getTime();
 		//new dead class
-		this.dead = checkIfDead();
+		this.dead = this.checkIfDead();
 		//new checkKeyPressesAndMove class
 		this.checkKeyPressesAndMove();
 		//new setAnimation class
@@ -210,7 +210,7 @@ game.PlayerEntity = me.Entity.extend({
 		}
 		//if touching enemy creep...
 		else if(response.b.type==='EnemyCreep'){
-			this.collideWithEnemyCreep(response):
+			this.collideWithEnemyCreep(response);
 		}
 	},
 
