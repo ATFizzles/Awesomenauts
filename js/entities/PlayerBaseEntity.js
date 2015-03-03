@@ -40,6 +40,7 @@ game.PlayerBaseEntity = me.Entity.extend({
 		//if health is 0, then player is dead
 		if(this.health<=0){
 			this.broken = true;
+			game.data.win = false;
 			//sets burning animation
 			this.renderable.setCurrentAnimation("broken");
 		}
