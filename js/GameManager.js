@@ -17,14 +17,15 @@ game.GameTimeManager = Object.extend({
 	update: function(){
 		//keeps track of timer
 		this.now = new Date().getTime();
-
+		//call to the goldTimerCheck function
 		this.goldTimerCheck();
-
+		//call to the creepTimerCheck function
 		this.creepTimerCheck();
 
 		return true;
 	},
 
+	//new goldTimerCheck function
 	goldTimerCheck: function(){
 		//keeps track of the amount of gold you get per creep
 		//rounds to 20 on one second interval
@@ -36,6 +37,7 @@ game.GameTimeManager = Object.extend({
 		}
 	},
 
+	//new creepTimerCheck function
 	creepTimerCheck: function(){
 		//keeps track of if it needs to make a new creep
 		//rounds to 10 on one second interval
@@ -51,12 +53,16 @@ game.GameTimeManager = Object.extend({
 	}
 });
 
-
+//HeroDeathManager class being created
 game.HeroDeathManager = object.extend({
+	//new init function
+	//parameters are x, y, and settings
 	init: function(x, y, settings){
+		//always updates function
 		this.alwaysUpdate = true;
 	},
 
+	//new update function
 	update: function(){
 		//if player dies...
 		if(game.data.player.dead){

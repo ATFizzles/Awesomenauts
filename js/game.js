@@ -80,7 +80,8 @@ var game = {
 
 		me.pool.register("gloop", game.Gloop, true);
 		//registering GameManager class, dont need to set to true cuz only one of them
-		me.pool.register("GameManager", game.GameTimeManager);
+		me.pool.register("GameTimerManager", game.GameTimerManager);
+		//registering HeroDeathManager class
 		me.pool.register("HeroDeathManager", game.HeroDeathManager);
 
 		me.state.set(me.state.MENU, new game.TitleScreen());

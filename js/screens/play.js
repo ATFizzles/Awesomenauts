@@ -9,14 +9,14 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.levelDirector.loadLevel("level01");
 		//resets player position
 		this.resetPlayer(0, 420);
-		//new gamemanager variable
+		//new gametimermanager variable
 		var gameTimerManager = me.pool.pull("GameTimerManager", 0, 0, {});
-		//adds gamemanager variable to the world
+		//adds gametimermanager variable to the world
 		me.game.world.addChild(gameTimerManager, 0);
 
-		//new gamemanager variable
+		//new heroDeathManager variable
 		var heroDeathManager = me.pool.pull("HeroDeathManager", 0, 0, {});
-		//adds gamemanager variable to the world
+		//adds herodeathmanager variable to the world
 		me.game.world.addChild(heroDeathManager, 0);
 
 		//binds right key for movement
