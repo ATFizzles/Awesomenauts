@@ -84,6 +84,7 @@ var game = {
 		me.pool.register("GameTimerManager", game.GameTimerManager);
 		//registering HeroDeathManager class
 		me.pool.register("HeroDeathManager", game.HeroDeathManager);
+		//registering ExperienceManager class
 		me.pool.register("ExperienceManager", game.ExperienceManager);
 
 		me.state.set(me.state.MENU, new game.TitleScreen());

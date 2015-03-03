@@ -71,24 +71,33 @@ game.HeroDeathManager = object.extend({
 			//respawns player at (10, 0)
 			me.state.current().resetPlayer(10, 0);
 		}
+		//tells update to actually do stuff
 		return true;
 	}
 });
 
+//ExperienceManager class being created
 game.ExperienceManager = Object.extend({
+	//new init function
 	init: function(x, y, settings){
+		//always updates function
 		this.alwaysUpdate = true;
 	},
 
+	//new update function
 	update: function(){
+		//if I win...
 		if(game.data.win === true){
+			//adds 10 experience
 			game.data.exp += 10;
 		}
-
+		//if I lose...
 		else if(game.data.win === false){
+			//adds 1 experience
 			game.data.exp += 1;
 		}
 
+		//tells update to actually do stuff
 		return true;
 
 	}
