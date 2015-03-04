@@ -123,6 +123,7 @@ game.ExperienceManager = Object.extend({
 		
 		//game is over if player wins
 		this.gameOver = true;
+		//saves current game variable of experience into save variable
 		me.save.exp =  game.data.exp;
 	}
 	

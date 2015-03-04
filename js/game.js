@@ -54,6 +54,7 @@ var game = {
 		});
 	}
 
+	//creates save file that keeps track of these 5 variables
 	me.save.add({exp: 0, exp1: 0, exp2: 0, exp3: 0, exp4: 0});
 
 	// Initialize the audio.
