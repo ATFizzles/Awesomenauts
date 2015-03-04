@@ -1,6 +1,6 @@
 //whole class that manages timers
 //not an entity, just an object
-game.GameTimeManager = Object.extend({
+game.GameTimerManager = Object.extend({
 	//uses same functions as usual
 	//constructor function
 	init: function(x, y, settings){
@@ -54,7 +54,7 @@ game.GameTimeManager = Object.extend({
 });
 
 //HeroDeathManager class being created
-game.HeroDeathManager = object.extend({
+game.HeroDeathManager = Object.extend({
 	//new init function
 	//parameters are x, y, and settings
 	init: function(x, y, settings){
@@ -82,20 +82,25 @@ game.ExperienceManager = Object.extend({
 	init: function(x, y, settings){
 		//always updates function
 		this.alwaysUpdate = true;
+		this.gameOver = false;
 	},
 
 	//new update function
 	update: function(){
 		//if I win...
-		if(game.data.win === true){
+		if(game.data.win === true && !this.gameOver){
 			//adds 10 experience
 			game.data.exp += 10;
+			this.gameOver = true;
 		}
 		//if I lose...
-		else if(game.data.win === false){
+		else if(game.data.win === false && !this.gameOver){
 			//adds 1 experience
 			game.data.exp += 1;
+			this.gameOver = true;
 		}
+
+		console.log(game.data.exp);
 
 		//tells update to actually do stuff
 		return true;
