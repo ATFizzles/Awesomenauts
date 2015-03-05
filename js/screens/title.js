@@ -8,7 +8,7 @@ game.TitleScreen = me.ScreenObject.extend({
 		//-10 puts title screen in back in z layer
 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage("title-screen")), -10);
 
-		//addind text
+		//adding new game text
 		//renderable means we are drawing something
 		me.game.world.addChild(new (me.Renderable.extend({
 			//new init function
@@ -52,7 +52,7 @@ game.TitleScreen = me.ScreenObject.extend({
 		})));
 
 
-		//addind text
+		//adding continue text
 		//renderable means we are drawing something
 		me.game.world.addChild(new (me.Renderable.extend({
 			//new init function
