@@ -19,6 +19,8 @@ game.TitleScreen = me.ScreenObject.extend({
 				this._super(me.Renderable, 'init', [270, 240, 300, 50]);
 				//font settings
 				this.font = new me.Font("Arial", 46, "white");
+				//listens for mouse to be clicked down on this object
+				//when mouse is clicked, calls on newGame function...then says true
 				me.input.registerPointerEvent('pointerdown', this, this.newGame.bind(this), true);
 			},
 
@@ -29,17 +31,22 @@ game.TitleScreen = me.ScreenObject.extend({
 				this.font.draw(renderer.getContext(), "START A NEW GAME", this.pos.x, this.pos.y);
 			},
 
+			//new update function
 			update: function(dt){
 				return true;
 			},
 
+			//new newGame function
 			newGame: function(){
+				//stops listening for mouse to be clicked
 				me.input.releasePointerEvent('pointerdown', this);
+				//resets every variable
 				me.save.remove('exp');
 				me.save.remove('exp1');
 				me.save.remove('exp2');
 				me.save.remove('exp3');
 				me.save.remove('exp4');
+				//starts game
 				me.state.change(me.state.PLAY);
 			}
 		})));
