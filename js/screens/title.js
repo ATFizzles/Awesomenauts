@@ -51,6 +51,45 @@ game.TitleScreen = me.ScreenObject.extend({
 			}
 		})));
 
+
+		//addind text
+		//renderable means we are drawing something
+		me.game.world.addChild(new (me.Renderable.extend({
+			//new init function
+			init: function(){
+				//call to super class
+				//passes in info
+				//sets text location
+				this._super(me.Renderable, 'init', [380, 340, 250, 50]);
+				//font settings
+				this.font = new me.Font("Arial", 46, "white");
+				//listens for mouse to be clicked down on this object
+				//when mouse is clicked, calls on newGame function...then says true
+				me.input.registerPointerEvent('pointerdown', this, this.newGame.bind(this), true);
+			},
+
+			//renderable uses draw function
+			//passes renderer
+			draw: function(renderer){
+				//draws what you want to write on the screen and the coordinates of it
+				this.font.draw(renderer.getContext(), "CONTINUE", this.pos.x, this.pos.y);
+			},
+
+			//new update function
+			update: function(dt){
+				return true;
+			},
+
+			//new newGame function
+			newGame: function(){
+				//stops listening for mouse to be clicked
+				me.input.releasePointerEvent('pointerdown', this);
+				//starts game
+				me.state.change(me.state.PLAY);
+			}
+		})));
+
+
 	},
 	
 	
