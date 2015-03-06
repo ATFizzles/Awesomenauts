@@ -5,9 +5,12 @@ game.PlayScreen = me.ScreenObject.extend({
 	onResetEvent: function() {
 		// reset the score
 		game.data.score = 0;
-		//loads the proper level within game
+
+		//console log for experience and experience2 variables
 		console.log(game.data.exp);
 		console.log(game.data.exp2);
+
+		//loads the proper level within game
 		me.levelDirector.loadLevel("level01");
 		//resets player position
 		this.resetPlayer(0, 420);

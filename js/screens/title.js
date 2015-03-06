@@ -46,6 +46,8 @@ game.TitleScreen = me.ScreenObject.extend({
 				me.save.remove('exp2');
 				me.save.remove('exp3');
 				me.save.remove('exp4');
+				//creates save file that keeps track of these 5 variables
+				//must add variables again after removing them
 				me.save.add({exp: 0, exp1: 0, exp2: 0, exp3: 0, exp4: 0});
 				//starts game
 				me.state.change(me.state.PLAY);
