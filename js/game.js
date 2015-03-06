@@ -7,8 +7,8 @@ var game = {
 		//adding variables that we need now and for the future
 		//assigning values to these variables
 		score : 0,
-		enemyBaseHealth: 10,
-		playerBaseHealth: 10,
+		enemyBaseHealth: 1,
+		playerBaseHealth: 1,
 		enemyCreepHealth: 10,
 		playerHealth: 10,
 		enemyCreepAttack: 1,
