@@ -1,3 +1,4 @@
+//creates new SpendExp class
 game.SpendExp = me.ScreenObject.extend({
 	/**	
 	 *  action to perform on state change
@@ -5,7 +6,7 @@ game.SpendExp = me.ScreenObject.extend({
 	onResetEvent: function() {	
 		//adds title screen image
 		//0, 0 is top left of screen
-		//-10 puts title screen in back in z layer
+		//-10 puts exp screen in back in z layer
 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage("exp-screen")), -10);
 
 		//adding new game text

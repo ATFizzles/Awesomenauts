@@ -16,7 +16,7 @@ game.resources = [
 	 {name: "creep1", type:"image", src: "data/img/brainmonster.png"},
 	 //program loads title screen
 	 {name: "title-screen", type:"image", src: "data/img/title.png"},
-
+	 //program loads experience screen
 	 {name: "exp-screen", type:"image", src: "data/img/loadpic.png"},
 	 {name: "gloop", type:"image", src: "data/img/gloop.png"},
 
