@@ -94,7 +94,7 @@ game.TitleScreen = me.ScreenObject.extend({
 				//stops listening for mouse to be clicked
 				me.input.releasePointerEvent('pointerdown', this);
 				//starts game
-				me.state.change(me.state.PLAY);
+				me.state.change(me.state.SPENDEXP);
 			}
 		})));
 
