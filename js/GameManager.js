@@ -32,7 +32,7 @@ game.GameTimerManager = Object.extend({
 		//makes sure creeps dont spawn within a second
 		if(Math.round(this.now/1000)%20 ===0 && (this.now - this.lastCreep >= 1000)){
 			//gives one gold per creep kill
-			game.data.gold += 1;
+			game.data.gold += (game.data.exp1+1);
 			console.log("Current gold: " + game.data.gold);
 		}
 	},
