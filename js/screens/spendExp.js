@@ -15,6 +15,8 @@ game.SpendExp = me.ScreenObject.extend({
 		me.input.bindKey(me.input.KEY.F3, "F3");
 		me.input.bindKey(me.input.KEY.F4, "F4");
 		me.input.bindKey(me.input.KEY.F5, "F5");
+		//new exp1cost variable
+		//equals...
 		var exp1cost = ((game.data.exp1 + 1) * 10);
 		//adding new game text
 		//renderable means we are drawing something
@@ -51,9 +53,14 @@ game.SpendExp = me.ScreenObject.extend({
 			//checks all buttons f1-f5
 			//determines which one is being picked
 			if(action === "F1"){
+				//if experience is greater than or equal to 
+				//the cost of exp1
 				if(game.data.exp >= exp1cost){
+					//exp 1 level +1
 					game.data.exp1 += 1;
+					//subtracts cost from total experience
 					game.data.exp -= exp1cost;
+					//starts game
 					me.state.change(me.state.PLAY);
 				}
 			}
