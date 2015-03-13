@@ -131,7 +131,7 @@ game.ExperienceManager = Object.extend({
 	
 });
 
-//new SpendGold class
+//new SpendGold object
 game.SpendGold = Object.extend({
 	//new init function
 	init: function(x, y, settings){
@@ -143,10 +143,42 @@ game.SpendGold = Object.extend({
 		this.paused = false;
 		//awlays updates game
 		this.alwaysUpdate = true;
+		this.updateWhenPaused = true;
+		this.buying = false;
 	},
 
 	//new update function
 	update: function(){
+		this.now = new Date().getTime();
+
+		if(me.input.isKeyPressed("buy") && this.now-this.lastBuy >=1000){
+			this.lastBuy = this.now;
+			if(!this.buying){
+				this.startBuying();
+			}
+			else{
+				this.stopBuying();
+			}
+		}
 		return true;
+	},
+
+	startBuying: function(){
+		this.buying = true;
+		me.state.pause(me.state.PLAY);
+		game.data.pausePos = me.game.viewport.localToWorld(0, 0);
+		game.data.buyscreen = new me.Sprite(game.data.pausePos.x, game.data.pausePos.y, me.loader.getImage('gold-screen'));
+		game.data.buyscreen.updateWhenPaused = true;
+		game.data.buyscreen.setOpacity(0.8);
+		me.game.world.addChild(game.data.buyscreen, 34);
+		game.data.player.body.setVelocity(0, 0);
+	},
+
+	stopBuying: function(){
+		this.buying = false;
+		me.state.resume(me.state.PLAY);
+		game.data.player.body.setVelocity(game.data.playerMoveSpeed, 20);
+		me.game.removeChild(game.data.buyscreen);
+
 	}
 });
