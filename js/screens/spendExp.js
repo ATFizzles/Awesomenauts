@@ -49,7 +49,7 @@ game.SpendExp = me.ScreenObject.extend({
 
 		//building event handler
 		//when a key is pressed
-		this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge){
+		this.handler = me.event.subscribe(me.event.KEYDOWN, function(action, keyCode, edge){
 			//checks all buttons f1-f5
 			//determines which one is being picked
 			if(action === "F1"){
@@ -62,11 +62,12 @@ game.SpendExp = me.ScreenObject.extend({
 					game.data.exp -= exp1cost;
 					//starts game
 					me.state.change(me.state.PLAY);
-				}
+				
 			}
 			else{
 				console.log("not enough exp");
 			}
+		}
 			else if(action === "F2"){
 
 			}
