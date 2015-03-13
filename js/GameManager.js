@@ -131,15 +131,21 @@ game.ExperienceManager = Object.extend({
 	
 });
 
-
+//new SpendGold class
 game.SpendGold = Object.extend({
+	//new init function
 	init: function(x, y, settings){
+		//sets game to current time
 		this.now = new Date().getTime();
+		//keeps track of last time u bought something
 		this.lastBuy = new Date().getTime();
+		//game isnt paused
 		this.paused = false;
+		//awlays updates game
 		this.alwaysUpdate = true;
 	},
 
+	//new update function
 	update: function(){
 		return true;
 	}

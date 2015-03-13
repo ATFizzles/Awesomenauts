@@ -29,15 +29,18 @@ game.PlayScreen = me.ScreenObject.extend({
 		//adds experienceManager variable to the world
 		me.game.world.addChild(experienceManager, 0);
 
-		//new experienceManager variable
+		//new SpendGold variable
 		var spendGold = me.pool.pull("SpendGold", 0, 0, {});
-		//adds experienceManager variable to the world
+		//adds spendgold variable to the world
 		me.game.world.addChild(spendGold, 0);
 
-
+		//binds B key to to buy
 		me.input.bindKey(me.input.KEY.B, "buy");
+		//binds Q key to skill1
 		me.input.bindKey(me.input.KEY.Q, "skill1");
+		//binds W key to skill 2
 		me.input.bindKey(me.input.KEY.W, "skill2");
+		//binds E key to skill3
 		me.input.bindKey(me.input.KEY.E, "skill3");
 		//binds right key for movement
 		me.input.bindKey(me.input.KEY.RIGHT, "right");

@@ -94,6 +94,7 @@ var game = {
 		me.pool.register("HeroDeathManager", game.HeroDeathManager);
 		//registering ExperienceManager class
 		me.pool.register("ExperienceManager", game.ExperienceManager);
+		//registering SpendGold class
 		me.pool.register("SpendGold", game.SpendGold);
 
 		me.state.set(me.state.MENU, new game.TitleScreen());

@@ -18,7 +18,7 @@ game.resources = [
 	 {name: "title-screen", type:"image", src: "data/img/title.png"},
 	 //program loads experience screen
 	 {name: "exp-screen", type:"image", src: "data/img/loadpic.png"},
-
+	 //program loads experience screen
 	 {name: "gold-screen", type:"image", src: "data/img/spend.png"},
 	 {name: "gloop", type:"image", src: "data/img/gloop.png"},
 
