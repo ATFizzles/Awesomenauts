@@ -190,20 +190,22 @@ game.SpendGold = Object.extend({
 		me.game.world.addChild(game.data.buyscreen, 34)
 		//makes sure player doesnt move when game is paused
 		game.data.player.body.setVelocity(0, 0);
-
 		me.state.pause(me.state.PLAY);
+		//setting up keys
+		//binding f1-f6 keys
 		me.input.bindKey(me.input.KEY.F1, "F1", true);
 		me.input.bindKey(me.input.KEY.F2, "F2", true);
 		me.input.bindKey(me.input.KEY.F3, "F3", true);
 		me.input.bindKey(me.input.KEY.F4, "F4", true);
 		me.input.bindKey(me.input.KEY.F5, "F5", true);
 		me.input.bindKey(me.input.KEY.F6, "F6", true);
+		//calls setBuyText function
 		this.setBuyText();
 	},
 
+	//new setBuyText function
 	setBuyText: function(){
-		//adding new game text
-		//renderable means we are drawing something
+		//making something stored in buytext
 		game.data.buytext = new (me.Renderable.extend({
 			//new init function
 			init: function(){
@@ -213,7 +215,9 @@ game.SpendGold = Object.extend({
 				this._super(me.Renderable, 'init', [game.data.pausePos.x, game.data.pausePos.y, 300, 50]);
 				//font settings
 				this.font = new me.Font("Arial", 26, "white");
+				//updates when game is paused
 				this.updateWhenPaused = true;
+				//always updates game
 				this.alwaysUpdate = true;
 			},
 
@@ -226,7 +230,7 @@ game.SpendGold = Object.extend({
 			}
 
 		}));
-		
+		//adds buytext variable to game
 		me.game.world.addChild(game.data.buytext, 35);
 	},
 
@@ -239,13 +243,14 @@ game.SpendGold = Object.extend({
 		game.data.player.body.setVelocity(game.data.playerMoveSpeed, 20);
 		//removes buy screen when game is unpaused
 		me.game.removeChild(game.data.buyscreen);
-
+		//unbinding f1-f6 keys
 		me.input.unbindKey(me.input.KEY.F1, "F1", true);
 		me.input.unbindKey(me.input.KEY.F2, "F2", true);
 		me.input.unbindKey(me.input.KEY.F3, "F3", true);
 		me.input.unbindKey(me.input.KEY.F4, "F4", true);
 		me.input.unbindKey(me.input.KEY.F5, "F5", true);
 		me.input.unbindKey(me.input.KEY.F6, "F6", true);
+		//removes buytext from game
 		me.game.world.removeChild(game.data.buytext);
 	}
 });
