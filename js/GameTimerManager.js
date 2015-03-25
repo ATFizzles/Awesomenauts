@@ -1,3 +1,4 @@
+//new GameTimerManager file
 //whole class that manages timers
 //not an entity, just an object
 game.GameTimerManager = Object.extend({

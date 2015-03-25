@@ -1,3 +1,4 @@
+//new HeroDeathManager file
 //HeroDeathManager class being created
 game.HeroDeathManager = Object.extend({
 	//new init function

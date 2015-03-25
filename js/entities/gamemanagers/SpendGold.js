@@ -1,3 +1,4 @@
+//new SpendGold file
 //new SpendGold object
 game.SpendGold = Object.extend({
 	//new init function
