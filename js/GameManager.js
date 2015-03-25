@@ -169,6 +169,7 @@ game.SpendGold = Object.extend({
 			}
 		}
 
+		//calls checkBuyKeys function
 		this.checkBuyKeys();
 
 		return true;
@@ -270,32 +271,44 @@ game.SpendGold = Object.extend({
 		me.game.world.removeChild(game.data.buytext);
 	},
 
+	//new checkBuyKeys function
 	checkBuyKeys: function(){
+		//if F1 pressed...
 		if(me.input.isKeyPressed("F1")){
+			//calls checkCost function
+			//passes 1 since we r using skill 1
 			if(this.checkCost(1)){
+				//calls makePurchase function
 				this.makePurchase(1);
 			}
 		}
+		//if F2 pressed...
+		//same for every else if
+		//passes certain number
 		else if(me.input.isKeyPressed("F2")){
 			if(this.checkCost(2)){
 				this.makePurchase(2);
 			}
 		}
+		//if F3 pressed...
 		else if(me.input.isKeyPressed("F3")){
 			if(this.checkCost(3)){
 				this.makePurchase(3);
 			}
 		}
+		//if F4 pressed
 		else if(me.input.isKeyPressed("F4")){
 			if(this.checkCost(4)){
 				this.makePurchase(4);
 			}
 		}
+		//if F5 pressed
 		else if(me.input.isKeyPressed("F5")){
 			if(this.checkCost(5)){
 				this.makePurchase(5);
 			}
 		}
+		//if F6 pressed
 		else if(me.input.isKeyPressed("F6")){
 			if(this.checkCost(6)){
 				this.makePurchase(6);
@@ -303,13 +316,18 @@ game.SpendGold = Object.extend({
 		}
 	},
 
+	//new checkCost function
+	//parameter is skill
 	checkCost: function(skill){
+		//if skill is 1 and amount of gold is greater or equal than the cost of skill...
 		if(skill===1 && (game.data.gold >= ((game.data.skill1+1)*10))){
 			return true;
 		}
+		//if skill is 2 and amount of gold is greater or equal than the cost of skill...
 		else if(skill===2 && (game.data.gold >= ((game.data.skill2+1)*10))){
 			return true;
 		}
+		//same for every other else if
 		else if(skill===3 && (game.data.gold >= ((game.data.skill3+1)*10))){
 			return true;
 		}
@@ -322,35 +340,50 @@ game.SpendGold = Object.extend({
 		else if(skill===6 && (game.data.gold >= ((game.data.ability3+1)*10))){
 			return true;
 		}
+		//if there isnt enough gold...cant buy anything
 		else{
 			return false;
 		}
 	},
 
+	//new makePurchase function
 	makePurchase: function(skill){
 		if(skill === 1){
+			//gold amount subtracted by cost of skill 1
 			game.data.gold -= ((game.data.skill1 +1)*10);
+			//increases skill level
 			game.data.skill1 += 1;
-			game.data.player.attack += 1;
+			//for this skill it adds to player attack
+			game.data.playerAttack += 1;
 		}
 		else if(skill === 2){
+			//gold amount subtracted by cost of skill 2
 			game.data.gold -= ((game.data.skill2 +1)*10);
+			//increases skill level
 			game.data.skill2 += 1;
 		}
 		else if(skill === 3){
+			//gold amount subtracted by cost of skill 3
 			game.data.gold -= ((game.data.skill3 +1)*10);
+			//increases skill level
 			game.data.skill3 += 1;
 		}
 		else if(skill === 4){
+			//gold amount subtracted by cost of ability 1
 			game.data.gold -= ((game.data.ability1 +1)*10);
+			//increases ability level
 			game.data.ability1 += 1;
 		}
 		else if(skill === 5){
+			//gold amount subtracted by cost of ability 2
 			game.data.gold -= ((game.data.ability2 +1)*10);
+			//increases ability level
 			game.data.ability2 += 1;
 		}
 		else if(skill === 6){
+			//gold amount subtracted by cost of ability 3
 			game.data.gold -= ((game.data.ability3 +1)*10);
+			//increases ability level
 			game.data.ability3 += 1;
 		}
 	}
