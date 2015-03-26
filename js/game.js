@@ -112,7 +112,9 @@ var game = {
 		me.state.set(me.state.PLAY, new game.PlayScreen());
 		//new SPENDEXP file
 		me.state.set(me.state.SPENDEXP, new game.SpendExp());
+		//new LoadProfle file
 		me.state.set(me.state.LOAD, new game.LoadProfile());
+		//new NewProfile file
 		me.state.set(me.state.NEW, new game.NewProfile());
 
 		// Start the game.

@@ -1,15 +1,15 @@
-//creates new SpendExp class
+//creates new NewProfile class
 game.NewProfile = me.ScreenObject.extend({
 	/**	
 	 *  action to perform on state change
 	 */
 	onResetEvent: function() {	
-		//adds title screen image
+		//adds new screen image
 		//0, 0 is top left of screen
 		//-10 puts exp screen in back in z layer
 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage("new-screen")), -10);
 
-		//registers f1-f5 keys during exp screen
+		//unbinds B, Q, E, W, and A keys during new screen
 		me.input.unbindKey(me.input.KEY.B);
 		me.input.unbindKey(me.input.KEY.Q);
 		me.input.unbindKey(me.input.KEY.E);
