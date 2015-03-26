@@ -69,6 +69,10 @@ var game = {
 	//sets SPENDEXP screen with a random value of 112
 	me.state.SPENDEXP = 112;
 
+	me.state.LOAD = 113;
+	me.state.NEW = 114;
+
+
 	// Initialize the audio.
 	me.audio.init("mp3,ogg");
 
@@ -108,6 +112,8 @@ var game = {
 		me.state.set(me.state.PLAY, new game.PlayScreen());
 		//new SPENDEXP file
 		me.state.set(me.state.SPENDEXP, new game.SpendExp());
+		me.state.set(me.state.LOAD, new game.LoadProfile());
+		me.state.set(me.state.NEW, new game.NewProfile());
 
 		// Start the game.
 		//when game first starts...goes to title screen
