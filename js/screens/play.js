@@ -34,6 +34,9 @@ game.PlayScreen = me.ScreenObject.extend({
 		//adds spendgold variable to the world
 		me.game.world.addChild(spendGold, 0);
 
+
+		me.input.bindKey(me.input.KEY.P, "pause");
+
 		//binds B key to to buy
 		me.input.bindKey(me.input.KEY.B, "buy");
 		//binds Q key to skill1
