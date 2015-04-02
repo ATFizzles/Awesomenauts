@@ -15,18 +15,25 @@
 	<body>
 		<!-- Canvas placeholder -->
 		<div id="screen"></div>
-
+		<!-- building a form to hold elements together -->
 		<form id="input" method="post"> 
+			<!-- field div -->
 			<div class="field">
+				<!-- username label -->
 				<label for="username">Username</label>
+				<!-- able to add username in box -->
 				<input type="text" name="username" id="username" autocomplete="off">
 			</div>
 
+			<!-- div for password -->
 			<div class="password">
+				<!-- password label -->
 				<label for="password">Password</label>
+				<!-- able to add password in box -->
 				<input type="text" name="password" id="password">
 			</div>
 
+			<!-- adding register, load, and mainmenu button -->
 			<button type="button" id="register">Register</button>
 			<button type="button" id="load">Load</button>
 			<button type="button" id="mainmenu">Main Menu</button>

@@ -31,7 +31,7 @@ body {
 	image-rendering: optimize-contrast;
 	-ms-interpolation-mode: nearest-neighbor;
 }
-
+/* for entire form */
 #input{
 	display: block;
 	text-align: center;

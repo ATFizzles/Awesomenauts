@@ -8,7 +8,9 @@ game.LoadProfile = me.ScreenObject.extend({
 		//0, 0 is top left of screen
 		//-10 puts exp screen in back in z layer
 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage("load-screen")), -10);
+		//makes input visible
 		document.getElementById("input").style.visibility = "visible";
+		//makes load visible
 		document.getElementById("load").style.visibility = "visible";
 
 
@@ -49,7 +51,9 @@ game.LoadProfile = me.ScreenObject.extend({
 	 *  action to perform when leaving this screen (state change)
 	 */
 	onDestroyEvent: function() {
+		//makes input back to visible
 		document.getElementById("input").style.visibility = "visible";
+		//makes load back to visible
 		document.getElementById("register").style.visibility = "visible";
 	}
 });
