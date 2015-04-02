@@ -5,7 +5,6 @@
 	//storing them in variable
 	//getting info via post method
 	//name of input that is being applied
-	//deletes characters that cant exist in emails
 	$username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
 	$password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
 
@@ -33,10 +32,11 @@
 		. "exp3 = 0, "
 		. "exp4 = 0");
 
+	//stores name of player at all times
 	$_SESSION["name"] = $username;
 
 	if($query){
-
+		//need this for Ajax on index.php
 		echo "true";
 	}
 

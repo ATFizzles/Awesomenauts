@@ -6,7 +6,7 @@
 	//regenerates id of original session
 	//prevents hacking
 	session_regenerate_id(true);
-	//$path holds the string /blog/
+	//$path holds the string /AxelTAwesomenauts/php/
 	$path = "/AxelTAwesomenauts/php/";
 
 	//database info
