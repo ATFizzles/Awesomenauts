@@ -39,7 +39,8 @@
 			$array["exp2"] = $row["exp2"];
 			$array["exp3"] = $row["exp3"];
 			$array["exp4"] = $row["exp4"];
-
+			//stores name of player at all times
+			$_SESSION["name"] = $username;
 			//echoing out whole array as one statement
 			echo json_encode($array);
 		}

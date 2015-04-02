@@ -2,30 +2,6 @@
 	//connects to index
 	require_once(__DIR__ . "/../model/config.php");
 	
-	//query creates table
-	//table name is postsR
-	//no values can be null
-	//table holds id string and posts text
-	$query = $_SESSION{"connection"}->query("CREATE TABLE posts ("
-		//creating table elements and setting max character limits + NOT NULL to make sure all info is inputted
-		. "id int(11) NOT NULL AUTO_INCREMENT,"
-		. "title varchar(255) NOT NULL,"
-		. "post text NOT NULL,"
-		. "DateTime datetime NOT NULL,"
-		. "PRIMARY KEY (id))");
-
-	//checks if query was successfully applied or run in the database
-	//<p> and </p> are html tags within php
-	if($query){
-		echo "<p>Successfully created table: posts</p>";
-	}
-
-	//creating new session to open connection_aborted(oid)
-	//_SESSION stores database info from "connection"
-	else {
-		echo "<p>" . $_SESSION{"connection"}->error . "</p>";
-	}
-
 	//new query variable connected to variable _SESSION, which stores data from connection
 	//creating elements of table users
 	//new database table to store registered users
@@ -39,6 +15,11 @@
 		//all values must be set, hence NOT NULL
 		. "password char(128) NOT NULL, "
 		. "salt char(128) NOT NULL, "
+		. "exp int(4),"
+		. "exp1 int(4),"
+		. "exp2 int(4),"
+		. "exp3 int(4),"
+		. "exp4 int(4),"
 		. "PRIMARY KEY (id))");
 
 	//outputs echo if query was successful
