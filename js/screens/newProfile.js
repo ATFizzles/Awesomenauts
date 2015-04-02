@@ -8,6 +8,10 @@ game.NewProfile = me.ScreenObject.extend({
 		//0, 0 is top left of screen
 		//-10 puts exp screen in back in z layer
 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage("new-screen")), -10);
+		document.getElementById("input").style.visibility = "visible";
+		document.getElementById("register").style.visibility = "visible";
+
+
 
 		//unbinds B, Q, E, W, and A keys during new screen
 		me.input.unbindKey(me.input.KEY.B);
@@ -46,6 +50,7 @@ game.NewProfile = me.ScreenObject.extend({
 	 *  action to perform when leaving this screen (state change)
 	 */
 	onDestroyEvent: function() {
-		
+		document.getElementById("input").style.visibility = "hidden";
+		document.getElementById("register").style.visibility = "hidden";
 	}
 });
