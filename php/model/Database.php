@@ -26,7 +26,7 @@
 			//constructed mysqli object
 			//helps connect to server on localhost
 			//opens connection
-			$this->connection = new mysqli($host, $username, $password, $database);
+			$this->connection = new mysqli($host, $username, $password);
 
 
 			if($this->connection->connect_error){
