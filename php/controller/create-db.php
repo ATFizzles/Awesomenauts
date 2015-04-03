@@ -22,3 +22,14 @@
 		. "exp3 int(4),"
 		. "exp4 int(4),"
 		. "PRIMARY KEY (id))");
+
+	//outputs echo if query was successful
+	if($query){
+		echo "<p>Successfully created table: users</p>";
+	}
+
+	//outputs echo if query was not successful
+	//will output the specific error
+	else{
+		echo "<p>" . $_SESSION["connection"]->error . "</P>";
+	}
