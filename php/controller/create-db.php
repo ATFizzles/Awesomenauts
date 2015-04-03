@@ -15,6 +15,7 @@
 		//all values must be set, hence NOT NULL
 		. "password char(128) NOT NULL, "
 		. "salt char(128) NOT NULL, "
+		//adds exp variables to table
 		. "exp int(4),"
 		. "exp1 int(4),"
 		. "exp2 int(4),"
