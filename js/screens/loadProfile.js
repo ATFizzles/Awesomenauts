@@ -51,9 +51,9 @@ game.LoadProfile = me.ScreenObject.extend({
 	 *  action to perform when leaving this screen (state change)
 	 */
 	onDestroyEvent: function() {
-		//makes input back to visible
+		//makes input back to hidden
 		document.getElementById("input").style.visibility = "hidden";
-		//makes load back to visible
+		//makes load back to hidden
 		document.getElementById("register").style.visibility = "hidden";
 	}
 });

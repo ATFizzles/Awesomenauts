@@ -17,6 +17,7 @@ game.SpendExp = me.ScreenObject.extend({
 		me.input.bindKey(me.input.KEY.F5, "F5");
 		//new exp1cost variable
 		//equals...
+		//passes exp1 as a number
 		var exp1cost = ((Number(game.data.exp1) + 1) * 10);
 		//adding new game text
 		//renderable means we are drawing something
