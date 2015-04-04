@@ -40,7 +40,7 @@
 				<!-- password label -->
 				<label for="password">Password</label>
 				<!-- able to add password in box -->
-				<input type="text" name="password" id="password">
+				<input type="password" name="password" id="password">
 			</div>
 
 			<!-- adding register, load, and mainmenu button -->
@@ -135,6 +135,46 @@
 					else{
 						//echo out something besides true
 						alert(response);
+					}
+			})
+				//if it fails...
+				.fail(function(response){
+					//prints out Fail
+					alert("Fail");
+				});
+
+		});	
+
+		//when register button clicked...starts a function
+		$("#load").bind("click", function(){
+			//ajax updates database while program is running
+			$.ajax({
+				//passes info to create-user file as post
+				type: "POST",
+				url: "php/controller/login-user.php",
+				//passes info value as a variable
+				data: {
+					username: $('#username').val(),
+					password: $('#password').val()
+				},
+				//type of data is text
+				dataType: "text"
+			})
+				//if it does what its supposed to do...
+				.success(function(response){
+					//if what we echoed out is true
+					if(response==="Invalid username and password"){
+						alert(response);
+					}
+					else{
+						var data = jQuery.parseJSON(response);
+						game.data.exp = data["exp"];
+						game.data.exp1 = data["exp1"];
+						game.data.exp2 = data["exp2"];
+						game.data.exp3 = data["exp3"];
+						game.data.exp4 = data["exp4"];
+						//takes user to play screen
+						me.state.change(me.state.SPENDEXP);
 					}
 			})
 				//if it fails...

@@ -46,11 +46,11 @@
 		}
 
 		else{
-			echo "<p>Invalid username and password</p>";
+			echo "Invalid username and password";
 		}
 	}
 
 	//if query couldnt store a username
 	else{
-		echo "<p>Invalid username and password</p>";
+		echo "Invalid username and password";
 	}
