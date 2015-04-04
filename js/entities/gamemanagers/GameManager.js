@@ -39,6 +39,7 @@ game.ExperienceManager = Object.extend({
 			//call to gameOver function
 			//passes true
 			this.gameOver(true);
+			alert("YOU WIN!");
 		}
 		//if I lose...
 		//and game isnt over
@@ -46,6 +47,7 @@ game.ExperienceManager = Object.extend({
 			//call to gameOver function
 			//passes false
 			this.gameOver(false);
+			alert("YOU LOSE!");
 		}
 
 		//tells update to actually do stuff
@@ -70,6 +72,44 @@ game.ExperienceManager = Object.extend({
 		this.gameOver = true;
 		//saves current game variable of experience into save variable
 		me.save.exp =  game.data.exp;
+
+
+			//ajax updates database while program is running
+			$.ajax({
+				//passes info to create-user file as post
+				type: "POST",
+				url: "php/controller/save-user.php",
+				//passes info value as a variable
+				data: {
+					exp: game.data.exp,
+					exp1: game.data.exp1,
+					exp2: game.data.exp2,
+					exp3: game.data.exp3,
+					exp4: game.data.exp4,
+				},
+				//type of data is text
+				dataType: "text"
+			})
+				//if it does what its supposed to do...
+				.success(function(response){
+					//if what we echoed out is true
+					if(response==="true"){
+						//takes user to play screen
+						me.state.change(me.state.MENU);
+					}
+					else{
+						//echo out something besides true
+						alert(response);
+					}
+			})
+				//if it fails...
+				.fail(function(response){
+					//prints out Fail
+					alert("Fail");
+				});
+
+
+
 		//only for testing purposes
 		me.save.exp2 = 4;
 	}

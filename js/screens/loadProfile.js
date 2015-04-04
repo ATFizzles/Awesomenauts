@@ -52,8 +52,8 @@ game.LoadProfile = me.ScreenObject.extend({
 	 */
 	onDestroyEvent: function() {
 		//makes input back to visible
-		document.getElementById("input").style.visibility = "visible";
+		document.getElementById("input").style.visibility = "hidden";
 		//makes load back to visible
-		document.getElementById("register").style.visibility = "visible";
+		document.getElementById("register").style.visibility = "hidden";
 	}
 });
