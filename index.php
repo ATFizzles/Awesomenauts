@@ -145,11 +145,11 @@
 
 		});	
 
-		//when register button clicked...starts a function
+		//when load button clicked...starts a function
 		$("#load").bind("click", function(){
 			//ajax updates database while program is running
 			$.ajax({
-				//passes info to create-user file as post
+				//passes info to login-user file as post
 				type: "POST",
 				url: "php/controller/login-user.php",
 				//passes info value as a variable
@@ -162,18 +162,22 @@
 			})
 				//if it does what its supposed to do...
 				.success(function(response){
-					//if what we echoed out is true
+					//if what we echoed out is "Invalid username and password"
 					if(response==="Invalid username and password"){
+						//echoes out what wasnt "Invalid username and password"
 						alert(response);
 					}
 					else{
+						//creating new data variable using json
 						var data = jQuery.parseJSON(response);
+						//makes all the exp game variables
+						//sets them to what was just loaded
 						game.data.exp = data["exp"];
 						game.data.exp1 = data["exp1"];
 						game.data.exp2 = data["exp2"];
 						game.data.exp3 = data["exp3"];
 						game.data.exp4 = data["exp4"];
-						//takes user to play screen
+						//takes user to spendexp screen
 						me.state.change(me.state.SPENDEXP);
 					}
 			})
