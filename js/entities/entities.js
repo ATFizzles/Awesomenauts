@@ -191,11 +191,11 @@ game.PlayerEntity = me.Entity.extend({
 	//new throwSpear function
 	throwSpear: function(){
 		//if spear cooldown time complete...&&...player has ability 3 unlocked...
-		if(this.lastSpear >= game.data.spearTimer && game.data.ability3 >= 0){
+		if((this.now-this.lastSpear) >= game.data.spearTimer*1000 && game.data.ability3 > 0){
 		//updates timer to this.now
 		this.lastSpear = this.now;
 		//builds spear variable
-		var spear = me.pool.pull("spear", this.pos.x, this.pos.y, {});
+		var spear = me.pool.pull("spear", this.pos.x, this.pos.y, {}, this.facing);
 		//adds spear into the world
 		me.game.world.addChild(spear, 10);
 		}
