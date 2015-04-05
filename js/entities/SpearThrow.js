@@ -16,19 +16,22 @@ game.SpearThrow = me.Entity.extend({
 		this.alwaysUpdate = true;
 		//sets movement speed
 		this.body.setVelocity(8, 0);
+		//sets ability 3 as an attack
 		this.attack = game.data.ability3*3;
 		//sets type of player
 		this.type = "spear";
+		//tracks direction player is facing
 		this.facing = facing;
 	},
 
 	update: function(delta){
+		//if player facing left
 		if(this.facing === "left"){
-			//actually moves the creep (left)
+			//actually moves the spear (left)
 			this.body.vel.x -= this.body.accel.x * me.timer.tick;
 		}
 		else{
-			//actually moves the creep (left)
+			//actually moves the spear (right)
 			this.body.vel.x += this.body.accel.x * me.timer.tick;
 		}
 		//checks for collisions 
@@ -44,9 +47,9 @@ game.SpearThrow = me.Entity.extend({
 
 	//new collideHandler function
 	collideHandler: function(response){
-		//if creep is touching base...
+		//if spear hits creep or enemy base...
 		if(response.b.type==='EnemyBase' || response.b.type==='EnemyCreep'){
-			//makes the player base call its loseHealth function and passes it a
+			//makes the enemy base and creep call its loseHealth function and passes it a
 			//game.data.enemyCreepAttack
 			response.b.loseHealth(this.attack);
 			me.game.world.removeChild(this);
