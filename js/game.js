@@ -106,6 +106,7 @@ var game = {
 		me.pool.register("ExperienceManager", game.ExperienceManager);
 		//registering SpendGold class
 		me.pool.register("SpendGold", game.SpendGold);
+		//registering spear class
 		me.pool.register("spear", game.SpearThrow);
 
 		me.state.set(me.state.MENU, new game.TitleScreen());

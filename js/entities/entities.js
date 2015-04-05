@@ -47,6 +47,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.now = new Date().getTime();
 		//tracks last hit
 		this.lastHit = this.now;
+		//tracks last spear throw
 		this.lastSpear = this.now;
 		//creates hit delay
 		this.lastAttack = new Date().getTime(); //Havent used attack variable yet
@@ -92,6 +93,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.dead = this.checkIfDead();
 		//new checkKeyPressesAndMove class
 		this.checkKeyPressesAndMove();
+		//new checkAbilityKeys class
 		this.checkAbilityKeys();
 		//new setAnimation class
 		this.setAnimation();
@@ -170,25 +172,31 @@ game.PlayerEntity = me.Entity.extend({
 		this.body.vel.y -= this.body.accel.y * me.timer.tick;
 	},
 
+	//new checkAbilityKeys function
 	checkAbilityKeys: function(){
+		//if skill1 pressed...
 		if(me.input.isKeyPressed("skill1")){
 			//this.speedBurst();
 		}
+		//if skill2 pressed...
 		else if(me.input.isKeyPressed("skill2")){
 			//this.eatCreep();
 		}
+		//if skill3 pressed...
 		else if(me.input.isKeyPressed("skill3")){
 			this.throwSpear();
 		}
 	},
 
+	//new throwSpear function
 	throwSpear: function(){
+		//if spear cooldown time complete...&&...player has ability 3 unlocked...
 		if(this.lastSpear >= game.data.spearTimer && game.data.ability3 >= 0){
 		//updates timer to this.now
 		this.lastSpear = this.now;
-		//builds creep
+		//builds spear variable
 		var spear = me.pool.pull("spear", this.pos.x, this.pos.y, {});
-		//adds creep into the world
+		//adds spear into the world
 		me.game.world.addChild(spear, 10);
 		}
 	},
