@@ -47,7 +47,8 @@ var game = {
 		pausePos: "",
 		buyscreen: "",
 		buytext: "",
-		minmap: ""
+		minmap: "",
+		miniPlayer: ""
 	},
 	
 	
@@ -113,6 +114,7 @@ var game = {
 		me.pool.register("spear", game.SpearThrow);
 		//registering minmap class
 		me.pool.register("MinMap", game.MinMap, true);
+		me.pool.register("MiniPlayerLocation", game.MiniPlayerLocation, true);
 
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());
