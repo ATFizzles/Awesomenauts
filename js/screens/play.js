@@ -35,6 +35,10 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.game.world.addChild(spendGold, 0);
 
 
+		game.data.minimap = me.pool.pull("minmap", 10, 10, {});
+		me.game.worl.addChild(game.data.minmap, 30);
+
+
 		me.input.bindKey(me.input.KEY.P, "pause");
 
 		//binds B key to to buy
