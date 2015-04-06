@@ -36,10 +36,10 @@ game.PlayScreen = me.ScreenObject.extend({
 
 		//creating minmap
 		//setting coords
-		game.data.minimap = me.pool.pull("minmap", 10, 10, {});
+		game.data.minmap = me.pool.pull("MinMap", 10, 10, {});
 		//adding minmap to game
 		//z level of 30 so backgorund doesnt cover it
-		me.game.worl.addChild(game.data.minmap, 30);
+		me.game.world.addChild(game.data.minmap, 30);
 
 
 		me.input.bindKey(me.input.KEY.P, "pause");
