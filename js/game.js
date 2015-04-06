@@ -111,6 +111,7 @@ var game = {
 		me.pool.register("SpendGold", game.SpendGold);
 		//registering spear class
 		me.pool.register("spear", game.SpearThrow);
+		//registering minmap class
 		me.pool.register("minmap", game.MinMap, true);
 
 		me.state.set(me.state.MENU, new game.TitleScreen());

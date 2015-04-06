@@ -34,8 +34,11 @@ game.PlayScreen = me.ScreenObject.extend({
 		//adds spendgold variable to the world
 		me.game.world.addChild(spendGold, 0);
 
-
+		//creating minmap
+		//setting coords
 		game.data.minimap = me.pool.pull("minmap", 10, 10, {});
+		//adding minmap to game
+		//z level of 30 so backgorund doesnt cover it
 		me.game.worl.addChild(game.data.minmap, 30);
 
 
