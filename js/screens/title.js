@@ -7,6 +7,7 @@ game.TitleScreen = me.ScreenObject.extend({
 		//0, 0 is top left of screen
 		//-10 puts title screen in back in z layer
 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage("title-screen")), -10);
+		me.audio.playTrack("ariana1");
 
 		
 		//adding new game text
@@ -92,6 +93,6 @@ game.TitleScreen = me.ScreenObject.extend({
 	 *  action to perform when leaving this screen (state change)
 	 */
 	onDestroyEvent: function() {
-
+		//me.audio.stopTrack("ariana1");
 	}
 });

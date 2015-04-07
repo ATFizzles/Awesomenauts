@@ -23,7 +23,7 @@ game.resources = [
 	 //program loads experience screen
 	 {name: "gold-screen", type:"image", src: "data/img/spend.png"},
 	 {name: "spear", type:"image", src: "data/img/spear.png"},
-	 {name: "gloop", type:"image", src: "data/img/gloop.png"},
+	 {name: "Gloop", type:"image", src: "data/img/gloop.png"},
 	 {name: "load-screen", type:"image", src: "data/img/loadpic.png"},
 	 {name: "new-screen", type:"image", src: "data/img/newpic.png"},
 
@@ -50,6 +50,9 @@ game.resources = [
 	 * @example
 	 * {name: "example_bgm", type: "audio", src: "data/bgm/"},
 	 */	
+
+	 //{name: "ariana1", type: "audio", src: "data/bgm/"},
+	 //{name: "sugar", type: "audio", src: "data/bgm/"},
 
 	/* Sound effects. 
 	 * @example

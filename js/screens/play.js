@@ -13,7 +13,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		//loads the proper level within game
 		me.levelDirector.loadLevel("level01");
 		//resets player position
-		this.resetPlayer(0, 420);
+		this.resetPlayer(10, 0, 420);
 		//new gametimermanager variable
 		var gameTimerManager = me.pool.pull("GameTimerManager", 0, 0, {});
 		//adds gametimermanager variable to the world
@@ -63,6 +63,8 @@ game.PlayScreen = me.ScreenObject.extend({
 		// add our HUD to the game world
 		this.HUD = new game.HUD.Container();
 		me.game.world.addChild(this.HUD);
+
+		//me.audio.playTrack("sugar");
 	},
 
 

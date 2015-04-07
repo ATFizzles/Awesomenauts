@@ -103,7 +103,7 @@ var game = {
 		//registering EnemyCreep class
 		me.pool.register("EnemyCreep", game.EnemyCreep, true);
 
-		me.pool.register("gloop", game.Gloop, true);
+		me.pool.register("Gloop", game.Gloop, true);
 		//registering GameManager class, dont need to set to true cuz only one of them
 		me.pool.register("GameTimerManager", game.GameTimerManager);
 		//registering HeroDeathManager class
