@@ -14,6 +14,7 @@ game.HeroDeathManager = Object.extend({
 		if(game.data.player.dead){
 			//removes character from the map
 			me.game.world.removeChild(game.data.player);
+			me.game.world.removeChild(game.data.miniPlayer);
 			//respawns player at (10, 0)
 			me.state.current().resetPlayer(10, 0);
 		}
