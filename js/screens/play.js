@@ -82,11 +82,11 @@ game.PlayScreen = me.ScreenObject.extend({
 		//adds player to world and chooses where the character spawns
 		me.game.world.addChild(game.data.player, 5);
 
-		//creating minmap
+		//creating minimap dot
 		//setting coords
 		game.data.miniPlayer = me.pool.pull("miniplayer", 10, 10, {});
-		//adding minmap to game
-		//z level of 30 so backgorund doesnt cover it
+		//adding minmap dot to game
+		//z level of 31 so backgorund and minimap doesnt cover it
 		me.game.world.addChild(game.data.miniPlayer, 31);
 	}
 });
