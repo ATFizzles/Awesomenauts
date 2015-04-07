@@ -48,7 +48,8 @@ var game = {
 		buyscreen: "",
 		buytext: "",
 		minmap: "",
-		miniPlayer: ""
+		miniPlayer: "",
+		pause: ""
 	},
 	
 	
@@ -74,6 +75,7 @@ var game = {
 
 	me.state.LOAD = 113;
 	me.state.NEW = 114;
+	me.state.PAUSE = 115;
 
 
 	// Initialize the audio.
@@ -124,6 +126,12 @@ var game = {
 		me.state.set(me.state.LOAD, new game.LoadProfile());
 		//new NewProfile file
 		me.state.set(me.state.NEW, new game.NewProfile());
+
+
+
+		me.state.set(me.state.PAUSE, new game.pause());
+
+
 
 		// Start the game.
 		//when game first starts...goes to title screen

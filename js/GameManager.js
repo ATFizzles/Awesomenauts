@@ -65,9 +65,9 @@ game.ExperienceManager = Object.extend({
 
 
 
-/*
 
-game.Pause = Object.extend({
+
+game.pause = Object.extend({
 	//new init function
 	init: function(x, y, settings){
 		//sets game to current time
@@ -97,13 +97,13 @@ game.Pause = Object.extend({
 
 	//new startBuying function
 	pauseScreen: function(){
-		me.state.pause(me.state.PLAY);
+		me.state.pause(me.state.PAUSE);
 		//sets pausePos to current location
 		game.data.pausePos = me.game.viewport.localToWorld(0, 0);
 		//makes screen a new sprite
 		//sets x and y position
 		//gets image
-		game.data.pausescreen = new me.Sprite(game.data.pausePos.x, game.data.pausePos.y, me.loader.getImage('new-screen'));
+		game.data.pausescreen = new me.Sprite(game.data.pausePos.x, game.data.pausePos.y, me.loader.getImage('pause-screen'));
 		//updates when screen is up
 		game.data.pausescreen.updateWhenPaused = true;
 		//makes buy screen opague
@@ -112,7 +112,7 @@ game.Pause = Object.extend({
 		me.game.world.addChild(game.data.pausescreen, 34)
 		//makes sure player doesnt move when game is paused
 		game.data.player.body.setVelocity(0, 0);
-		me.state.pause(me.state.PLAY);
+		me.state.pause(me.state.PAUSE);
 	},
 
 	
