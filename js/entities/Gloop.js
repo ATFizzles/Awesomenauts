@@ -1,4 +1,4 @@
-/*game.Gloop = me.Entity.extend({//code for the enemycreep to be on webstie
+game.Gloop = me.Entity.extend({//code for the enemycreep to be on webstie
 	init: function(x, y, settings) {
 		this._super(me.Entity, 'init', [x, y, {
 			image: "gloop",
@@ -22,10 +22,8 @@
 		this.body.setVelocity(3, 20);
 
 		this.type ="gloop";
-	
-		this.setAnimation();
 
-		renderable.addAnimation("walk", [3, 4, 5], 80);
+		this.renderable.addAnimation("walk", [3, 4, 5], 80);
 		this.renderable.setCurrentAnimation("walk");	
 	},
 

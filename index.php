@@ -73,6 +73,7 @@
 		<script type="text/javascript" src="js/entities/SpearThrow.js"></script>
 		<script type="text/javascript" src="js/entities/MinMap.js"></script>
 		<script type="text/javascript" src="js/entities/MiniPlayerLocation.js"></script>
+		<script type="text/javascript" src="js/entities/Gloop.js"></script>
 
 		<script type="text/javascript" src="js/screens/title.js"></script>
 		<script type="text/javascript" src="js/screens/play.js"></script>
