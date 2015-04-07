@@ -84,9 +84,9 @@ game.PlayScreen = me.ScreenObject.extend({
 
 		//creating minmap
 		//setting coords
-		game.data.miniplayer= me.pool.pull("MiniPlayerLocation", 10, 10, {});
+		game.data.miniPlayer = me.pool.pull("miniplayer", 10, 10, {});
 		//adding minmap to game
 		//z level of 30 so backgorund doesnt cover it
-		me.game.world.addChild(game.data.miniplayer, 31);
+		me.game.world.addChild(game.data.miniPlayer, 31);
 	}
 });
