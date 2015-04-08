@@ -9,10 +9,9 @@ game.TitleScreen = me.ScreenObject.extend({
 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage("title-screen")), -10);
 		me.audio.playTrack("ariana1");
 
-		
 		//adding new game text
 		//renderable means we are drawing something
-		me.game.world.addChild(new (me.Renderable.extend({
+		game.data.option1 = new (me.Renderable.extend({
 			//new init function
 			init: function(){
 				//call to super class
@@ -40,17 +39,19 @@ game.TitleScreen = me.ScreenObject.extend({
 
 			//new newGame function
 			newGame: function(){
+				me.input.releasePointerEvent('pointerdown', game.data.option2);
 				//stops listening for mouse to be clicked
 				me.input.releasePointerEvent('pointerdown', this);
 				//starts game
 				me.state.change(me.state.NEW);
 			}
-		})));
+		}));
 
+		me.game.world.addChild(game.data.option1);
 
 		//adding continue text
 		//renderable means we are drawing something
-		me.game.world.addChild(new (me.Renderable.extend({
+		game.data.option2 = new (me.Renderable.extend({
 			//new init function
 			init: function(){
 				//call to super class
@@ -78,13 +79,15 @@ game.TitleScreen = me.ScreenObject.extend({
 
 			//new newGame function
 			newGame: function(){
+				me.input.releasePointerEvent('pointerdown', game.data.option1);
 				//stops listening for mouse to be clicked
 				me.input.releasePointerEvent('pointerdown', this);
 				//starts game
 				me.state.change(me.state.LOAD);
 			}
-		})));
+		}));
 
+		me.game.world.addChild(game.data.option2);
 
 	},
 	
@@ -93,6 +96,6 @@ game.TitleScreen = me.ScreenObject.extend({
 	 *  action to perform when leaving this screen (state change)
 	 */
 	onDestroyEvent: function() {
-		//me.audio.stopTrack("ariana1");
+		me.audio.stopTrack("ariana1");
 	}
 });

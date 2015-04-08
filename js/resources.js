@@ -51,8 +51,8 @@ game.resources = [
 	 * {name: "example_bgm", type: "audio", src: "data/bgm/"},
 	 */	
 
-	 //{name: "ariana1", type: "audio", src: "data/bgm/"},
-	 //{name: "sugar", type: "audio", src: "data/bgm/"},
+	 {name: "ariana1", type: "audio", src: "data/bgm/"},
+	 {name: "sugar", type: "audio", src: "data/bgm/"},
 
 	/* Sound effects. 
 	 * @example
